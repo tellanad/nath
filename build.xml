@@ -113,4 +113,9 @@
     <target name="describeMetadata">
       <sf:describeMetadata username="${sf.username}" password="${sf.password}" sessionId="${sf.sessionId}" serverurl="${sf.serverurl}"/>
     </target>
+    <!-- target : Deploy, validate -->
+    <target name="Validate">
+      <sf:deploy username="${sf.username}" password="${sf.password}" sessionId="${sf.sessionId}" 
+	  deployRoot="codepkg" serverurl="${sf.serverurl}" maxPoll="${sf.maxPoll}" zipFile="${sf.zipFile}" pollWaitMillis="1000" rollbackOnError="true"/>
+    </target>
 </project>
