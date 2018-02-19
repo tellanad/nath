@@ -1,0 +1,4 @@
+<apex:page controller="skuid.LabelsController" standardStylesheets="false" sidebar="false" showChat="false"
+	showHeader="false" contentType="text/plain" language="{!language}">
+<apex:outputText value="{!labels}" escape="false" />
+</apex:page>

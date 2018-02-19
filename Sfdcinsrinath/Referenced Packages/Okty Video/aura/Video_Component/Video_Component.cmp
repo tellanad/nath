@@ -1,0 +1,14 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes" access="global">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <aura:attribute name="urlVideo" type="String" default="https://www.youtube.com/watch?v=fcwAm73P6Wg" access="global" />
+    <aura:attribute name="titleVideo" type="String" default="default title" access="global" />
+	<aura:attribute name="heightVideo" type="Integer" default="100" access="global" />
+	<aura:attribute name="iframeHtml" type="String" default="" access="private"/>
+    
+    <div class="okty_video_container">
+<!--     	<aura:html tag="iframe" HTMLAttributes="{!v.attrMap}"></aura:html> -->
+			<aura:unescapedHtml value="{!v.iframeHtml}" />
+        <h2>{!v.titleVideo}</h2>
+    </div>
+</aura:component>

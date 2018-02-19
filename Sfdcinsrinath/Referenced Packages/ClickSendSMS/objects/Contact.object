@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Is_SMS_Sent__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Is SMS Sent</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Last_SMS_Sent_On__c</fullName>
+        <deprecated>false</deprecated>
+        <description>store when last sms have been sent</description>
+        <externalId>false</externalId>
+        <label>Last SMS Sent On</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>DateTime</type>
+    </fields>
+    <webLinks>
+        <fullName>Send_SMS</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Send SMS</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/30.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/30.0/apex.js&quot;)} 
+
+SelectedIds=&quot;{!Contact.Id}&quot; 
+ 
+ 
+ var w=800; 
+        var h=500; 
+        var left = (screen.width/2)-(w/2); 
+        var top = (screen.height/2)-(h/2); 
+        
+        var smsWindow=window.open(&apos;/apex/ClickSendSMS__ClickSendSMS?id=&apos;+SelectedIds+&apos;&amp;types=&apos;+1,&apos;&apos;, &apos;toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=&apos;+w+&apos;, height=&apos;+h+&apos;, top=&apos;+top+&apos;, left=&apos;+left);</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Send_SMS_to_All</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Send SMS to All</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/30.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/30.0/apex.js&quot;)}
+
+//var url = parent.location.href; 
+var selectedRecords= {!GETRECORDIDS($ObjectType.Contact)};
+   
+var SelectedIds=&apos;&apos;; 
+ 
+ var w=800; 
+        var h=500; 
+        var left = (screen.width/2)-(w/2); 
+        var top = (screen.height/2)-(h/2); 
+        
+        window.open(&apos;/apex/ClickSendSMS__ClickSendSMS?recs=&apos;+SelectedIds+&apos;&amp;types=&apos;+2,&apos;&apos;, &apos;toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=&apos;+w+&apos;, height=&apos;+h+&apos;, top=&apos;+top+&apos;, left=&apos;+left);
+//performaction(SelectedIds,2);</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Send_SMS_to_Selected</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Send SMS to Selected</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/30.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/30.0/apex.js&quot;)}
+
+//var url = parent.location.href; 
+var selectedRecords= {!GETRECORDIDS($ObjectType.Contact)};
+ 
+
+if (selectedRecords[0] == null) {
+alert(&quot;Please select at least one record to send sms.&quot;);
+}
+ else { 
+var SelectedIds=&apos;&apos;; 
+for(var i=0;i &lt; selectedRecords.length; i++) 
+{ 
+SelectedIds+=selectedRecords[i]+&quot;,&quot;; 
+} 
+
+SelectedIds=SelectedIds.substring(0,SelectedIds.length - 1);
+
+ var w=800; 
+        var h=500; 
+        var left = (screen.width/2)-(w/2); 
+        var top = (screen.height/2)-(h/2); 
+        
+        window.open(&apos;/apex/ClickSendSMS__ClickSendSMS?recs=&apos;+SelectedIds+&apos;&amp;types=&apos;+1,&apos;&apos;, &apos;toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=&apos;+w+&apos;, height=&apos;+h+&apos;, top=&apos;+top+&apos;, left=&apos;+left);
+// parent.location.href = url;  
+//performaction(SelectedIds,1);
+ 
+ 
+ 
+}</url>
+    </webLinks>
+</CustomObject>

@@ -1,0 +1,255 @@
+<apex:page controller="tubl.UserSettingsAdminController"
+           title="TextUs Connection Admin"
+           setup="false"
+           sidebar="true"
+           showHeader="true"
+           standardStylesheets="true"
+           tabStyle="TextUsBizAdminSettings__tab">
+    <head>
+        <style>
+            .tableHeader {
+                background-color: #F0F8FF !important;
+            }
+
+            .fauxBtn {
+                text-decoration: none !important;
+                padding: 4px 3px !important;
+                display: inline-block !important;
+            }
+
+            .coloredRow {
+                background-color: #FFFAF0;
+            }
+
+            .neutralRow {
+                background-color: #FFFFFF;
+            }
+
+            .bPageBlock .detailList td {
+                vertical-align: middle;
+            }
+        </style>
+        <script type="text/javascript">
+            function deleteSettingsInstance(idToDelete, userName) {
+                if (confirm('Are you sure you want to delete TextUs connection for ' + userName + '?')) {
+                    deleteInstance(idToDelete);
+                }
+            }
+            var oldLength = 0;
+            function doSearch(email) {
+                if (email.length > 3)
+                    emailPart = email;
+                else if (oldLength > email.length && oldLength > 3) {
+                    emailPart = '';
+                }
+                else {
+                    oldLength = email.length;
+                    return;
+                }
+                oldLength = email.length;
+                filterUsers(emailPart);
+            }
+
+        </script>
+    </head>
+
+    <apex:form id="management_form">
+        <apex:actionRegion >
+            <apex:actionFunction name="filterUsers"
+                                 action="{!runSearch}"
+                                 rendered="{!settingsAccessible && settingsCreatable && settingsEditable && settingsDeleteable}"
+                                 rerender="users-list">
+                <apex:param name="emailPart"
+                            assignTo="{!emailPart}"
+                            value=""/>
+            </apex:actionFunction>
+            <apex:actionFunction action="{!deleteInstance}"
+                                 name="deleteInstance"
+                                 rendered="{!settingsAccessible && settingsCreatable && settingsEditable && settingsDeleteable}"
+                                 reRender="main-block">
+                <apex:param name="idToDelete"
+                            assignTo="{!idToDelete}"
+                            value=""/>
+            </apex:actionFunction>
+            <apex:sectionHeader title="TextUs Connection settings"
+                                subtitle="Configure TextUs Connection Parameters for all Users"/>
+            <apex:pageMessages />
+            <apex:pageBlock Title="Configure individual TextUs connection parameters"
+                            mode="maindetail"
+                            rendered="{!settingsAccessible && settingsCreatable && settingsEditable && settingsDeleteable}"
+                            id="main-block">
+                <apex:pageBlockSection Title="Search by Email"
+                                       columns="1"
+                                       collapsible="false">
+                    <apex:inputText label="{!$Label.tubl__filterusersemaillabel}"
+                                    id="email-search"
+                                    onkeyup="doSearch(this.value);">
+                    </apex:inputText>
+                </apex:pageBlockSection>
+                <apex:pageBlockSection Title="Org Users"
+                                       id="users-list"
+                                       columns="1"
+                                       collapsible="false">
+                    <apex:panelGrid columns="7"
+                                    style="margin:0px auto;"
+                                    rowClasses="tableHeader">
+                        <apex:commandButton status="fetchStatus1"
+                                            reRender="users-list"
+                                            value="|<"
+                                            action="{!first}"
+                                            disabled="{!!usersSetController.hasPrevious}"
+                                            title="First Page"/>
+                        <apex:commandButton status="fetchStatus1"
+                                            reRender="users-list"
+                                            value="<"
+                                            action="{!previous}"
+                                            disabled="{!!usersSetController.hasPrevious}"
+                                            title="Previous Page"/>
+                        <apex:commandButton status="fetchStatus1"
+                                            reRender="users-list"
+                                            value=">"
+                                            action="{!next}"
+                                            disabled="{!!usersSetController.hasNext}"
+                                            title="Next Page"/>
+                        <apex:commandButton status="fetchStatus1"
+                                            reRender="users-list"
+                                            value=">|"
+                                            action="{!last}"
+                                            disabled="{!!usersSetController.hasNext}"
+                                            title="Last Page"/>
+                        <apex:outputText >{!(usersSetController.pageNumber * size)+1-size}-{!IF((usersSetController.pageNumber * size)>noOfUserRecordsAvailable, noOfUserRecordsAvailable,(usersSetController.pageNumber * size))} of {!noOfUserRecordsAvailable}</apex:outputText>
+                        <apex:outputPanel style="color:#4AA02C;font-weight:bold">
+                            <apex:actionStatus id="fetchStatus1"
+                                               startText="Fetching..."
+                                               stopText=""/>
+                        </apex:outputPanel>
+                    </apex:panelGrid>
+                    <apex:pageBlockTable id="user-table"
+                                         value="{!users}"
+                                         var="wrapper"
+                                         headerClass="tableHeader"
+                                         rowClasses="neutralRow, coloredRow">
+                        <apex:column >
+                            <apex:facet name="header">Select</apex:facet>
+                            <apex:outputLink value="/apex/tubl__ConnectionSettings?{!idUrl}={!wrapper.settingsUser.Id}"
+                                             id="create-connection"
+                                             rendered="{!wrapper.settings == null}">Create TextUs Connection
+                            </apex:outputLink>
+                            <apex:outputLink value="/apex/tubl__ConnectionSettings?{!idUrl}={!wrapper.settingsUser.Id}"
+                                             id="edit"
+                                             rendered="{!wrapper.settings != null}">Edit
+                            </apex:outputLink>
+                            <apex:outputText value=" | "
+                                             rendered="{!wrapper.settings != null}"/>
+                            <apex:commandLink value="Delete"
+                                              id="delete"
+                                              onclick="deleteSettingsInstance('{! JSENCODE(wrapper.settingsUser.Id) }', '{! JSENCODE(wrapper.settingsUser.Name) }'); return false;"
+                                              reRender="null"
+                                              rendered="{!wrapper.settings != null}"/>
+                        </apex:column>
+                        <apex:column headervalue="Name"
+                                     value="{!wrapper.settingsUser.Name}"/>
+                        <apex:column headervalue="E-mail"
+                                     value="{!wrapper.settingsUser.Email}"/>
+                        <apex:column >
+                            <apex:facet name="header">{!$ObjectType.tubl__TextUsBiz_ConnectionSettings__c.Fields.tubl__TextUsBizUsername__c.Label}</apex:facet>
+                            <apex:outputText value="{!wrapper.settings.tubl__TextUsBizUsername__c}"
+                                             rendered="{!wrapper.settings != null}"/>
+                        </apex:column>
+                        <apex:column >
+                            <apex:facet name="header">{!$ObjectType.tubl__TextUsBiz_ConnectionSettings__c.Fields.tubl__TextUsBiz_APIKey__c.Label}</apex:facet>
+                            <apex:outputText value="**************"
+                                             rendered="{!wrapper.settings != null}"/>
+                        </apex:column>
+                    </apex:pageBlockTable>
+                    <apex:panelGrid columns="7"
+                                    style="margin:0px auto;"
+                                    rowClasses="tableHeader">
+                        <apex:commandButton status="fetchStatus"
+                                            reRender="users-list"
+                                            value="|<"
+                                            action="{!first}"
+                                            disabled="{!!usersSetController.hasPrevious}"
+                                            title="First Page"/>
+                        <apex:commandButton status="fetchStatus"
+                                            reRender="users-list"
+                                            value="<"
+                                            action="{!previous}"
+                                            disabled="{!!usersSetController.hasPrevious}"
+                                            title="Previous Page"/>
+                        <apex:commandButton status="fetchStatus"
+                                            reRender="users-list"
+                                            value=">"
+                                            action="{!next}"
+                                            disabled="{!!usersSetController.hasNext}"
+                                            title="Next Page"/>
+                        <apex:commandButton status="fetchStatus"
+                                            reRender="users-list"
+                                            value=">|"
+                                            action="{!last}"
+                                            disabled="{!!usersSetController.hasNext}"
+                                            title="Last Page"/>
+                        <apex:outputText >{!(usersSetController.pageNumber * size)+1-size}-{!IF((usersSetController.pageNumber * size)>noOfUserRecordsAvailable, noOfUserRecordsAvailable,(usersSetController.pageNumber * size))} of {!noOfUserRecordsAvailable}</apex:outputText>
+                        <apex:outputPanel style="color:#4AA02C;font-weight:bold">
+                            <apex:actionStatus id="fetchStatus"
+                                               startText="Fetching..."
+                                               stopText=""/>
+                        </apex:outputPanel>
+                    </apex:panelGrid>
+                </apex:pageBlockSection>
+            </apex:pageBlock>
+        </apex:actionRegion>
+
+        <apex:pageBlock title="TextUs Batch jobs status"
+                        mode="maindetail"
+                        rendered="{!settingsAccessible && settingsCreatable && settingsEditable && settingsDeleteable}">
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton action="{!scheduleJobs}"
+                                    rendered="{!!textUsBatchRunning}"
+                                    value="Start TextUs Batches"/>
+                <apex:commandButton action="{!cancelJobs}"
+                                    rendered="{!textUsBatchRunning}"
+                                    value="Stop TextUs Batches"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection title="Schedule TextUs Batch Jobs Parameters"
+                                   columns="1"
+                                   rendered="{!!textUsBatchRunning}"
+                                   id="scheduleSection"
+                                   collapsible="false">
+                <apex:selectList size="1" label="Please select Interval for TextUs Batch Jobs Scheduling"
+                                 value="{!batchScheduleInterval}">
+                    <apex:selectOption itemLabel="Every 2 Minutes" itemValue="2"/>
+                    <apex:selectOption itemLabel="Every 3 Minutes" itemValue="3"/>
+                    <apex:selectOption itemLabel="Every 4 Minutes" itemValue="4"/>
+                    <apex:selectOption itemLabel="Every 5 Minutes" itemValue="5"/>
+                    <apex:selectOption itemLabel="Every 6 Minutes" itemValue="6"/>
+                    <apex:selectOption itemLabel="Every 10 Minutes" itemValue="10"/>
+                    <apex:selectOption itemLabel="Every 12 Minutes" itemValue="12"/>
+                    <apex:selectOption itemLabel="Every 15 Minutes" itemValue="15"/>
+                    <apex:selectOption itemLabel="Every 20 Minutes" itemValue="20"/>
+                    <apex:selectOption itemLabel="Every 30 Minutes" itemValue="30"/>
+                </apex:selectList>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        <apex:pageBlock title="Upload TextUs connection data"
+                        mode="maindetail"
+                        rendered="{!settingsAccessible && settingsCreatable && settingsEditable && settingsDeleteable}">
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton action="{!upload}"
+                                    value="Upload"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection title="Upload file"
+                                   columns="1"
+                                   id="block1"
+                                   collapsible="false">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Upload a file in the format User.Id,TextUs Username, TextUs API Key. You can upload up to 1000 records in one go, without headers."
+                                      for="file"/>
+                    <apex:inputFile value="{!body}"
+                                    filename="{!fileName}"
+                                    id="file"/>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

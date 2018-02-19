@@ -1,0 +1,28 @@
+<apex:page sidebar="false" showHeader="false" >
+ 
+ <apex:pageBlock Title=" First Page Block" >
+    <apex:pageBlockSection title="First page  Block Section" columns="1" >
+       <apex:pageBlockSectionItem >
+       First Page Block SectionItem Message
+       </apex:pageBlockSectionItem>
+       <apex:pageBlockSectionItem >
+       First Page Block SectionItem Message
+       </apex:pageBlockSectionItem>
+       <apex:pageBlockSectionItem >
+       First Page Block SectionItem Message
+       </apex:pageBlockSectionItem>       
+    </apex:pageBlockSection>
+ <apex:pageBlockSection title="Second Page Block Section" columns="3">
+    <apex:pageBlockSectionItem >
+     Second Page Block SectionItem Message
+     </apex:pageBlockSectionItem>
+    <apex:pageBlockSectionItem >
+     Second Page Block SectionItem Message
+    </apex:pageBlockSectionItem>
+       <apex:pageBlockSectionItem >
+       Second Page Block SectionItem Message
+       </apex:pageBlockSectionItem>    
+ </apex:pageBlockSection>
+ </apex:pageblock>
+ 
+</apex:page>

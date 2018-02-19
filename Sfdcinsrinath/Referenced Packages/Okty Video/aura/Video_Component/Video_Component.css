@@ -1,0 +1,22 @@
+.THIS{
+    text-align: center;
+}
+.THIS h2{
+    font-size: 24px;
+    margin: 20px 0;
+}
+.THIS.okty_video_container{
+    border-radius: .3125rem;
+    background-color: white;
+    margin: 14px;
+    padding: 15px;
+    box-sizing: border-box;
+    /* Firefox */
+	width: -moz-calc(100% - 30px);
+	/* WebKit */
+	width: -webkit-calc(100% - 30px);
+	/* Opera */
+	width: -o-calc(100% - 30px);
+	/* Standard */
+	width: calc(100% - 30px);
+}

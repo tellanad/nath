@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>TextUs_Phone__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>IF(!ISBLANK(MobilePhone),MobilePhone,IF(!ISBLANK(Phone),Phone,IF(!ISBLANK(HomePhone),HomePhone,IF(!ISBLANK(OtherPhone),OtherPhone,IF(!ISBLANK(AssistantPhone),AssistantPhone,&apos;&apos;)))))</formula>
+        <label>TextUs Phone</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <webLinks>
+        <fullName>Send_Text</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Send Text</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <url>/apex/tubl__SendTextMessage?id={!Contact.Id}</url>
+    </webLinks>
+</CustomObject>

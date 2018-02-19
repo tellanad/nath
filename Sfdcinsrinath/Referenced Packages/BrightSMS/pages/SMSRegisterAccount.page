@@ -1,0 +1,153 @@
+<apex:page id="SMSRegisterAccountPage" standardController="User" extensions="BG_SMS.SMSRegisterAccountController">
+
+    <apex:form id="SMSRegisterForm">
+        <apex:pageblock id="smsRegBlock" mode="edit">
+        
+            <apex:pageBlockSection title="Register SMS Account" id="smsRegBlock" columns="1" collapsible="true">
+
+                <apex:pageBlockSectionItem id="firstName" helpText="First name must be no longer than 20 characters">
+                    <apex:outputLabel value="First Name" for="firstName" styleClass="labelCol"/>
+					<apex:outputPanel styleClass="requiredInput" layout="block">
+					<apex:outputPanel styleClass="requiredBlock" layout="block"/>
+                    <apex:inputText id="firstName" maxlength="20" value="{!firstName}"  style="height:17px;width:150px"/>
+					</apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem id="lastName" helpText="Last name must be no longer than 20 characters">
+                    <apex:outputLabel value="Last Name" for="lastName" styleClass="labelCol"/>
+					<apex:outputPanel styleClass="requiredInput" layout="block">
+					<apex:outputPanel styleClass="requiredBlock" layout="block"/>
+                    <apex:inputText id="lastName" maxlength="20" value="{!lastName}"  style="height:17px;width:150px"/>
+					</apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem id="address1" helpText="Address must be no longer than 60 characters">
+                    <apex:outputLabel value="Address1" for="address1" styleClass="labelCol"/>
+					<apex:outputPanel styleClass="requiredInput" layout="block">
+					<apex:outputPanel styleClass="requiredBlock" layout="block"/>
+                    <apex:inputText id="address1" maxlength="60" value="{!address1}"  style="height:17px;width:150px"/>
+					</apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem id="town" helpText="Town must be no longer than 25 characters">
+                    <apex:outputLabel value="Town" for="town" styleClass="labelCol"/>
+					<apex:outputPanel styleClass="requiredInput" layout="block">
+					<apex:outputPanel styleClass="requiredBlock" layout="block"/>
+                    <apex:inputText id="town" maxlength="25" value="{!town}"  style="height:17px;width:150px"/>
+					</apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem id="cityCounty" helpText="City/County must be no longer than 25 characters">
+                    <apex:outputLabel value="City/County" for="cityCounty" styleClass="labelCol"/>
+					<apex:outputPanel styleClass="requiredInput" layout="block">
+					<apex:outputPanel styleClass="requiredBlock" layout="block"/>
+                    <apex:inputText id="cityCounty" maxlength="25" value="{!cityCounty}"  style="height:17px;width:150px"/>
+					</apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                                    
+                <apex:pageBlockSectionItem id="postcode" helpText="Postcode must be in standard UK format">
+                    <apex:outputLabel value="Postcode" for="postcode" styleClass="labelCol"/>
+					<apex:outputPanel styleClass="requiredInput" layout="block">
+					<apex:outputPanel styleClass="requiredBlock" layout="block"/>
+                    <apex:inputText id="postcode" value="{!postcode}"  style="height:17px;width:150px"/>
+					</apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem id="country" helpText="Country must be no longer than 50 characters">
+                    <apex:outputLabel value="Country" for="country" styleClass="labelCol"/>
+					<apex:outputPanel styleClass="requiredInput" layout="block">
+					<apex:outputPanel styleClass="requiredBlock" layout="block"/>
+                    <apex:inputText id="country" maxlength="50" value="{!country}"  style="height:17px;width:150px"/>
+					</apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem id="email" helpText="Email Address must be no longer than 70 characters">
+                    <apex:outputLabel value="Email Address" for="email" styleClass="labelCol"/>
+					<apex:outputPanel styleClass="requiredInput" layout="block">
+					<apex:outputPanel styleClass="requiredBlock" layout="block"/>
+                    <apex:inputText id="email" maxlength="70" value="{!email}"  style="height:17px;width:150px"/>
+					</apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                    
+                <apex:pageBlockSectionItem id="mobileNumber" helpText="Mobile number must be numeric and contain 11 or 12 digits.">
+                    <apex:outputLabel value="Mobile Number" for="mobileNumber" styleClass="labelCol"/>
+					<apex:outputPanel styleClass="requiredInput" layout="block">
+					<apex:outputPanel styleClass="requiredBlock" layout="block"/>
+                    <apex:inputText id="mobileNumber" maxlength="12" value="{!mobileNumber}"  style="height:17px;width:150px"/>
+					</apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem id="username" helpText="SMS Account ID must be between 4 and 18 characters long. Legal characters are a-z, A-Z, 0-9 and -">
+                    <apex:outputLabel value="SMS Account ID" for="username" styleClass="labelCol"/>
+					<apex:outputPanel styleClass="requiredInput" layout="block">
+					<apex:outputPanel styleClass="requiredBlock" layout="block"/>
+                    <apex:inputText id="username" maxlength="18" value="{!username}"  style="height:17px;width:150px"/>
+					</apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                    
+                <apex:pageBlockSectionItem id="password" helpText="Password must be no longer than 15 characters">
+                    <apex:outputLabel value="Password" for="password" styleClass="labelCol"/>
+					<apex:outputPanel styleClass="requiredInput" layout="block">
+					<apex:outputPanel styleClass="requiredBlock" layout="block"/>
+                    <apex:inputSecret id="password" maxlength="15" value="{!password}" style="height:17px;width:150px"/>
+					</apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem id="confirmPassword" helpText="Please re-enter the password">
+                    <apex:outputLabel value="Confirm Password" for="confirmPassword" styleClass="labelCol"/>
+					<apex:outputPanel styleClass="requiredInput" layout="block">
+					<apex:outputPanel styleClass="requiredBlock" layout="block"/>
+                    <apex:inputSecret id="confirmPassword" maxlength="15" value="{!confirmPassword}" style="height:17px;width:150px"/>
+					</apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem id="passwordHintQuestion" helpText="Please select a security question from the list">
+                    <apex:outputLabel value="Security Question" styleClass="labelCol"/>
+					<apex:outputPanel styleClass="requiredInput" layout="block">
+					<apex:outputPanel styleClass="requiredBlock" layout="block"/>
+                    <apex:selectList value="{!passwordHintQuestion}" size="1">
+                      <apex:selectOption itemLabel="Mother's maiden name" itemValue="1" />
+                      <apex:selectOption itemLabel="First school" itemValue="2" /> 
+                      <apex:actionSupport event="onchange" rerender="list"/>
+                    </apex:selectList> 
+					</apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem id="passwordHint" helpText="Please provide an answer to the security question. This should be no longer than 20 characters">
+                    <apex:outputLabel value="Security Question Answer" for="passwordHint" styleClass="labelCol"/>
+					<apex:outputPanel styleClass="requiredInput" layout="block">
+					<apex:outputPanel styleClass="requiredBlock" layout="block"/>
+                    <apex:inputSecret id="passwordHint" maxlength="20" value="{!passwordHint}" style="height:17px;width:150px"/>
+					</apex:outputPanel>
+                </apex:pageBlockSectionItem>
+ 
+                <apex:pageBlockSectionItem id="Buttons">
+                    <apex:outputLabel value="" styleClass="labelCol"/>
+					<apex:actionStatus id="mySaveStatus1">     
+					<apex:facet name="stop">  	             
+					<apex:commandButton action="{!registerAccount}" status="mySaveStatus1" value="Register Account" disabled="{!smsResponse.jobID=='0'}" rerender="ResultsSection, Buttons"/>          
+					</apex:facet>          
+					<apex:facet name="start">  	  
+					<apex:commandButton action="{!registerAccount}" status="mySaveStatus1" value="Processing..." disabled="true" />
+					</apex:facet>
+					</apex:actionStatus>
+                </apex:pageBlockSectionItem>
+                
+            </apex:pageBlockSection>
+
+            <apex:pageBlockSection title="Register Account Overview" id="ResultsSection" columns="1" collapsible="{!NOT(ISNULL(smsResponse))}">
+                <apex:pageBlockTable value="{!smsResponse}" var="smsres" rendered="{!NOT(ISNULL(smsResponse))}">
+                    <apex:column >
+                        <apex:facet name="header">Status Code</apex:facet>
+                        <apex:outputText value="{!smsres.jobID}"/>
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">Status Text</apex:facet>
+                        <apex:outputText value="{!smsres.statusText}"/>
+                    </apex:column>  
+                </apex:pageBlockTable>
+            </apex:pageBlockSection>
+            
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

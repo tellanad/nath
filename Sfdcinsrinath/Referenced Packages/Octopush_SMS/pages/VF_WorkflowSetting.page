@@ -1,0 +1,105 @@
+<apex:page controller="OctoSMS.VF_WorkflowSetting_CTRL" id="p"> 
+<apex:sectionHeader title="Use standard wrokflow to send your SMS on event basis" subtitle="SMS Workflow Settings"/>                    
+<apex:pageMessages id="msgBox"/>
+
+<apex:form id="f">   
+    <apex:pageBlock id="pb">       
+        <apex:pageBlockButtons >
+            <apex:commandButton action="{!generateTask}" value="Generate SMS Task" reRender="itaTaskComment, msgBox" />
+            <apex:commandButton action="{!cancel}" value="Cancel" immediate="true" />            
+        </apex:pageBlockButtons>
+       
+        <apex:pageBlockSection id="pbs" title="Workflow Settings" columns="2" collapsible="false">              
+                
+                 <apex:pageblockSectionItem helpText="{!$Label.octosms__helptext_related_object_field}">      
+                    <apex:outputLabel value="Related object" />   
+                    <apex:outputPanel >
+                        <div class = "requiredInput">
+                            <div class = "requiredBlock"></div>
+                            <apex:selectList value="{!objectRelatedTo}" multiselect="false" size="1">
+                                <apex:selectOptions value="{!objectOptions}"/>
+                                <apex:actionSupport event="onchange" action="{!changeObjectRelatedTo}" reRender="slField"/>
+                            </apex:selectList>
+                             </div>
+                    </apex:outputPanel>                    
+                </apex:pageblockSectionItem>                
+                 <apex:pageBlockSectionItem />
+
+                <apex:pageblockSectionItem helpText="{!$Label.octosms__helptext_mobile_phone_field}">      
+                    <apex:outputLabel value="Mobile Phone Field" />   
+                    <apex:outputPanel >
+                        <div class = "requiredInput">
+                            <div class = "requiredBlock"></div>
+                            <apex:selectList id="slField" value="{!fieldRelatedTo}" multiselect="false" size="1">
+                                <apex:selectOptions value="{!fieldsOptions}"/>
+                            </apex:selectList>
+                             </div>
+                    </apex:outputPanel>  
+                </apex:pageblockSectionItem>                
+                <apex:pageBlockSectionItem />
+                
+                <apex:pageblockSectionItem helpText="{!$Label.octosms__helptext_sender_name_field}">      
+                    <apex:outputLabel value="Sender Name" />
+                    <apex:outputPanel >
+                        <div class = "requiredInput">
+                            <div class = "requiredBlock"></div>
+                            <apex:inputText id="ifSenderName" value="{!senderName}" required="true"/>
+                            </div>
+                    </apex:outputPanel> 
+                 </apex:pageblockSectionItem>
+                <apex:pageBlockSectionItem />
+                
+                <apex:pageblockSectionItem helpText="{!$Label.octosms__helptext_additional_mobile_number_field}">                         
+                    <apex:outputLabel value="Additional Mobile Number" />
+                    <apex:inputText value="{!additionalMobile}" />
+                 </apex:pageblockSectionItem>
+                <apex:pageBlockSectionItem />
+                
+                <apex:inputField id="ifTemplate" value="{!aSMS.OctoSMS__SMS_Template__c}" >                    
+                    <apex:actionSupport event="onchange" action="{!fillTemplateContent}" immediate="false" rerender="ifMessage, ifSenderName" oncomplete="reComputeCharRemaining()"/>
+                </apex:inputField>
+                <apex:pageBlockSectionItem />
+                
+                <apex:pageblockSectionItem helpText="{!$Label.octosms__helptext_transactional_marketing_field}">                    
+                    <apex:outputLabel value="SMS Purpose" />
+                    <apex:outputPanel >
+                        <apex:selectRadio value="{!smsPurpose}" required="true">
+                            <apex:selectOptions value="{!items}"/>
+                        </apex:selectRadio>
+                    </apex:outputPanel>
+                </apex:pageblockSectionItem>
+                 <apex:pageBlockSectionItem />
+                 
+                <apex:pageblockSectionItem id="pbsiMessage" helpText="{!$Label.octosms__helptext_message_field}">                    
+                    <apex:outputLabel value="Message" /> 
+                    <apex:outputPanel >
+                        <div class = "requiredInput">
+                            <div class = "requiredBlock"></div>
+                            <apex:inputTextarea id="ifMessage" value="{!message}" style="width:200px; height:100px;" onkeyup="reComputeCharRemaining();"/>  
+                        </div>
+                        <div id="textarea_feedback"></div>   
+                    </apex:outputPanel>
+                </apex:pageblockSectionItem>
+                 <apex:pageBlockSectionItem />
+                
+                <apex:pageblockSectionItem helpText="{!$Label.octosms__helptext_task_comment_field}">                    
+                    <apex:outputLabel value="Task Comment" />      
+                    <apex:inputTextarea id="itaTaskComment" value="{!taskComment}" style="width:400px; height:150px;" disabled="true"/>
+                 </apex:pageblockSectionItem>                 
+                 <apex:pageBlockSectionItem />
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+</apex:form>
+<script>
+    var text_max = 459;
+    var smsCount = 1;
+    document.getElementById('textarea_feedback').innerHTML = text_max + ' characters remaining<br>'+smsCount+' SMS';
+    function reComputeCharRemaining() {
+        console.log('ddd');
+        var text_length = document.getElementById('p:f:pb:pbs:pbsiMessage:ifMessage').value.length;
+        var text_remaining = text_max - text_length;
+        if(text_remaining < 160) smsCount = 3; else if (text_remaining < 306) smsCount = 2; else smsCount = 1; 
+        document.getElementById('textarea_feedback').innerHTML = text_remaining + ' characters remaining<br>'+smsCount+' SMS';
+    }
+</script>
+</apex:page>

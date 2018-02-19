@@ -1,0 +1,7 @@
+<apex:page standardController="Account">
+<apex:pageBlock title="Account Info">
+<apex:pageBlockSection columns="1" title="Details">
+   <apex:detail relatedList="false" />
+</apex:pageBlockSection>
+</apex:pageBlock>
+</apex:page>

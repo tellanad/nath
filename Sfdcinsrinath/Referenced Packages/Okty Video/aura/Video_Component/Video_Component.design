@@ -1,0 +1,5 @@
+<design:component label="Video Component">
+	<design:attribute name="urlVideo" label="Url" description="Input the video url" />
+    <design:attribute name="titleVideo" label="Title" description="Input a video title" />
+    <design:attribute name="heightVideo" label="Height in px" description="Input a video height" />
+</design:component>

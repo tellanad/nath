@@ -1,0 +1,15 @@
+#################### Reply Above ####################<br><br>
+Hello, <br><br>
+You have received an incoming message. <br><br>
+To view the message, click following: <br><br>
+ <a href="https://login.salesforce.com/{!Message__c.Id}"  target="_blank">{!Message__c.Name}</a><br><br>
+To view associated record, click following: <br><br>
+<a href="https://login.salesforce.com/{!Message__c.Related_Object_Id__c}" target="_blank">{!Message__c.Related_Object__c}</a><br><br> 
+ <b>Record Id :</b> {!Message__c.Related_Object_Id__c} <br>
+ <b>Record Name    :</b>{!Message__c.Sender_Name__c}   <br>
+ <b>Sender Number :</b>  {!Message__c.Sender_Number__c} <br>
+<b>To Number : </b> {!Message__c.ToNumber__c}<br>
+<b>Message : </b> {!Message__c.Message_Text_New__c} <br><br><br>
+Thanks , <br><br>
+
+360 SMS App for Salesforce <br><br>

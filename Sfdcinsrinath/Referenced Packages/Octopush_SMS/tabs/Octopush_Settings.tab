@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
+    <icon>Octopush/Logo.jpg</icon>
+    <label>Octopush Settings</label>
+    <mobileReady>false</mobileReady>
+    <motif>Custom109: TV Widescreen</motif>
+    <page>VF_OctopushSettings</page>
+</CustomTab>

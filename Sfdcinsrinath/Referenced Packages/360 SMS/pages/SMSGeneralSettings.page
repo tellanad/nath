@@ -1,0 +1,506 @@
+<apex:page Controller="tdc_tsw.SMSSettingController" id="SMSSetting" >
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" type="text/css" rel="stylesheet" />
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+ <style type="text/css">
+  .checkbox label {
+    width: 100%;
+    text-align: left;
+  }
+  .checkbox label span{
+    display: inline-block;
+    float: right;
+  }
+  .tabs{
+      font-size:14px;
+  }
+  #section-bar-4 {padding-bottom:120px;}
+ 
+  #AdditionalEmailSection label{padding-top: 5px;}
+  #AdditionalEmailSection a {padding-top: 5px; display: inline-block;}
+  .modal-body {padding:0}
+        #SMSAPP .modal-content {padding-bottom: 0;}
+        .errorblock { height: 150px;}
+        
+        .errorblock.info {background: #98B4E2; border: 2px solid #375DB8;}
+        .errorblock.info .msgText span, .errorblock.info .msgText p {color: #0F2C76}
+        
+        .errorblock.success {background: #A7FAA7; border: 2px solid #08C108;}
+        .errorblock.success .msgText span, .errorblock.success .msgText p {color: #2C622C}
+        
+        .errorblock.error {background: #FFC7BA; border: 2px solid #D25B3F;}
+        .errorblock.error .msgText span, .errorblock.error .msgText p {color: #AD110E}
+        
+        .errorblock img{width: 70px; margin-top: 10px; margin-right: 10px; float:left;}
+        .errorblock .msgText {float;left}
+        .errorblock .msgText span {font-size: 24px; margin-top: 15px; display: block;}
+        .errorblock .msgText p {font-size: 18px; padding-top: 0; font-weight: normal;}
+        .errorblock a {position: absolute; top: 5px; right: 10px; color: #FFFFFF; font-size: 18px;}
+        
+        #AdditionalEmailSection {display: block;}
+        #AdditionalEmailSection label {
+          width: 140px;
+        }
+        
+        #AdditionalEmailSection .errorMsg{
+        display: block;
+        margin-left: 146px;
+        }
+        #general_table td{padding:06px 0px}
+        .message.errorM3{
+            max-width: 500px;
+            margin: 0px auto;
+            padding: 10px;
+        }
+        .message .messageText h4 {
+            font-weight: bold;
+            display: inline-block;
+            margin: 12px 5px 0px;
+        }
+       #SMSAPP table#general_table tr th, #SMSAPP table#general_table tr td {
+            text-align: left !important;
+            width: 33% !important;
+        }
+  </style>
+ 
+    <apex:form id="formID">
+    <apex:outputpanel rendered="{!isHide}">
+        <apex:commandButton action="{!saveRecord}"  style="width:100px;font-weight: 800; margin-bottom:21px" styleClass="btn btn1 btn-primary"  status="actStatusId" rerender="formID" value="Save" rendered="{!isEdit}"/>
+        <apex:commandButton action="{!editRecord}"  style="width:100px;font-weight: 800; margin-bottom:21px" styleClass="btn btn1 btn-primary"  status="actStatusId" rerender="formID" value="Edit" rendered="{!!isEdit}"/>
+        <apex:commandButton action="{!cancelRecord}" style="width:100px;font-weight: 800; margin-bottom:21px" styleClass="btn btn1 btn-primary"  status="actStatusId" rerender="formID" value="Cancel" rendered="{!isEdit}"/>
+    </apex:outputpanel>
+    <br/><apex:outputpanel rendered="{!isError}">
+            <apex:pageMessages />
+         </apex:outputpanel>
+    <br/>
+    
+     <div class="table-responsive">     
+       <table cellspacing="500" align="center" id="general_table" Class="table list CustomObjectsTable ">
+        <tr style="background: #009688">
+            <th colspan="3" style="color: #fff"> Owner Details</th>
+        </tr> 
+            <tr>
+                <td Class="form-inline" style="padding: 10px">
+                SMS App Owner Name : 
+                </td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td>
+                    <apex:selectlist value="{!ownerIdSetting.tdc_tsw__SMS_App_Owner_id__c}" size="1" rendered="{!isEdit}" styleClass="form-control" >
+                        <apex:selectOptions value="{!OwnerList}" />
+                    </apex:selectlist>
+                    <apex:outputText value="{!ownerIdSetting.tdc_tsw__Value__c}" rendered="{!!isEdit}"/> 
+                </td>
+            </tr>
+            <tr style="background: #009688">
+                <th colspan="3" style="color: #fff"> Subscription Keywords</th>
+            </tr> 
+            <tr>
+                <td Class="form-inline" style="padding: 10px">
+                    Re-Subscribe Keywords :
+                </td>
+                <td></td>
+                <td>
+                    <apex:outputpanel rendered="{!isEdit}">
+                        <apex:inputText value="{!subscribeGeneralSetting.tdc_tsw__Value__c}" style="border: 1px solid #980606;" styleClass="form-control" rendered="{!blankSubs}">
+                            <i style="color: red;float: right;padding-right: 144px;">Must be unique value</i>
+                         </apex:inputText>
+                        <apex:inputText value="{!subscribeGeneralSetting.tdc_tsw__Value__c}" styleClass="form-control" rendered="{!!blankSubs}">
+                            <i style="float: right;padding-right: 144px;">Must be unique value</i>
+                         </apex:inputText>
+                    </apex:outputpanel>
+                    <apex:outputText value="{!subscribeGeneralSetting.tdc_tsw__Value__c}" rendered="{!!isEdit}" />
+                </td>
+            </tr>
+            <tr>
+                <td Class="form-inline" style="padding: 10px">
+                Unsubscribe Keywords :
+                </td>
+                <td></td>
+                <td>
+                    <apex:outputpanel rendered="{!isEdit}">
+                        <apex:inputText value="{!unsubscribeGeneralSetting.tdc_tsw__Value__c}" style="border: 1px solid #980606;" styleClass="form-control" rendered="{!blankUnsubs}">
+                            <i style="color: red;float: right;padding-right: 144px;">Must be unique value</i>
+                         </apex:inputText>
+                        <apex:inputText value="{!unsubscribeGeneralSetting.tdc_tsw__Value__c}" styleClass="form-control" rendered="{!!blankUnsubs}">
+                            <i style="float: right;padding-right: 144px;">Must be unique value</i>
+                         </apex:inputText>
+                    </apex:outputpanel>
+                    <apex:outputText value="{!unsubscribeGeneralSetting.tdc_tsw__Value__c}" rendered="{!!isEdit}" />
+                </td>
+            </tr>
+            <tr style="background: #009688">
+                <th colspan="3" style="color: #fff"> SMS Delivery Report Setting</th>
+            </tr> 
+            <tr>
+                <td Class="form-inline" style="padding: 10px">
+                    Site URL :
+                </td>
+                <td></td>
+                <td>
+                    <apex:inputText value="{!urlSMSAppSiteSetting.tdc_tsw__URL__c}" styleClass="form-control"  rendered="{!isEdit}"/>
+                    <apex:outputText value="{!urlSMSAppSiteSetting.tdc_tsw__URL__c}" style="width: 100%;height: auto" rendered="{!!isEdit}"/>
+                </td>
+            </tr>
+            <tr style="background: #009688">
+                <th colspan="3" style="color: #fff"> Keywords To Create New Lead and Case</th>
+            </tr> 
+            <tr>
+                <td Class="form-inline" style="padding: 10px">
+                    Lead Keywords :
+                </td>
+                <td></td>
+                <td>
+                    <apex:outputpanel rendered="{!isEdit}">
+                        <apex:inputText value="{!newLeadGeneralSetting.tdc_tsw__Value__c}" style="border: 1px solid #980606;" styleClass="form-control" rendered="{!blankLead}"  />
+                        <apex:inputText value="{!newLeadGeneralSetting.tdc_tsw__Value__c}" styleClass="form-control" rendered="{!!blankLead}"/>
+                    </apex:outputpanel>
+                    <apex:outputText value="{!newLeadGeneralSetting.tdc_tsw__Value__c}" rendered="{!!isEdit}" />
+                </td>
+            </tr>
+            <tr>
+                <td Class="form-inline" style="padding: 10px">
+                    Case Keywords :
+                </td>
+                <td></td>
+                <td>
+                    <apex:outputpanel rendered="{!isEdit}">
+                        <apex:inputText value="{!newCaseGeneralSetting.tdc_tsw__Value__c}" style="border: 1px solid #980606;" styleClass="form-control" rendered="{!blankCase}"/>
+                        <apex:inputText value="{!newCaseGeneralSetting.tdc_tsw__Value__c}" styleClass="form-control" rendered="{!!blankCase}"/>
+                    </apex:outputpanel>
+                    <apex:outputText value="{!newCaseGeneralSetting.tdc_tsw__Value__c}" rendered="{!!isEdit}"  />   
+                </td>
+            </tr>
+            <tr style="background: #009688">
+                <th colspan="3" style="color: #fff">Settings for SideBar</th>
+            </tr>
+            <tr>
+                <td Class="form-inline" style="padding: 10px">
+                    Incoming Alert Color Changes to Yellow in :
+                </td>
+                <td></td>
+                <td>
+                     
+                        <apex:outputpanel rendered="{!isEdit}">
+                            <apex:inputText value="{!incomingAlertYellow.tdc_tsw__Value__c}" maxLength="3" style="border: 1px solid #980606;" styleClass="form-control" rendered="{!blankYellow}">
+                                <i style="float: right;padding-right: 144px;">Time in mins</i>
+                            </apex:inputText>
+                            <apex:inputText value="{!incomingAlertYellow.tdc_tsw__Value__c}" maxLength="3" styleClass="form-control" rendered="{!!blankYellow}">
+                                <i style="float: right;padding-right: 144px;">Time in mins</i>
+                            </apex:inputText>
+                        </apex:outputpanel>
+                     
+                    <apex:outputPanel rendered="{!!isEdit}">
+                        <apex:outputText value="{!incomingAlertYellow.tdc_tsw__Value__c} min" rendered="{!OR(incomingAlertYellow.tdc_tsw__Value__c == '1', incomingAlertYellow.tdc_tsw__Value__c == '0')}"/>
+                        <apex:outputText value="{!incomingAlertYellow.tdc_tsw__Value__c} mins" rendered="{!!OR(incomingAlertYellow.tdc_tsw__Value__c == '1', incomingAlertYellow.tdc_tsw__Value__c == '0')}"/>
+                    </apex:outputPanel> 
+                </td>
+            </tr> 
+            <tr >
+                <td Class="form-inline" style="padding: 10px">
+                    Incoming Alert Color Changes to Red in :
+                </td>
+               <td></td>
+                <td>
+                    
+                         <apex:outputpanel rendered="{!isEdit}">
+                            <apex:inputText value="{!incomingAlertRed.tdc_tsw__Value__c}" maxLength="3" style="border: 1px solid #980606;" styleClass="form-control" rendered="{!isredSame}">
+                                <i style="color: red;float: right;padding-right: 144px;">Time in mins (Must be unique)</i>
+                             </apex:inputText>
+                             <apex:inputText value="{!incomingAlertRed.tdc_tsw__Value__c}" maxLength="3" style="border: 1px solid #980606;" styleClass="form-control" rendered="{!blankRed}">
+                                <i style="float: right;padding-right: 144px;">Time in mins</i>
+                             </apex:inputText>
+                            <apex:inputText value="{!incomingAlertRed.tdc_tsw__Value__c}" maxLength="3" styleClass="form-control" rendered="{!AND(isredSame==false, blankRed==false)}">
+                                <i style="float: right;padding-right: 144px;">Time in mins</i>
+                             </apex:inputText>
+                         </apex:outputpanel>
+                    
+                     
+                     <apex:outputPanel rendered="{!!isEdit}">
+                        <apex:outputText value="{!incomingAlertRed.tdc_tsw__Value__c} min" rendered="{!OR(incomingAlertRed.tdc_tsw__Value__c == '1', incomingAlertRed.tdc_tsw__Value__c == '0')}"/>
+                        <apex:outputText value="{!incomingAlertRed.tdc_tsw__Value__c} mins" rendered="{!!OR(incomingAlertRed.tdc_tsw__Value__c == '1', incomingAlertRed.tdc_tsw__Value__c == '0')}"/>
+                    </apex:outputPanel>
+                </td>
+            </tr>
+            
+            <tr>
+                <td Class="form-inline" style="padding: 10px">
+                    Incoming Sidebar Automatic Refresh Time :
+                </td>
+                <td></td>
+                <td>
+                    <apex:selectList value="{!autoRefreshTime.tdc_tsw__Value__c}" size="1" styleClass="form-control" rendered="{!isEdit}" >
+                        <apex:selectOptions value="{!RefreshTime}"/>
+                    </apex:selectList>
+                    <!-- apex:inputText value="{!autoRefreshTime.tdc_tsw__Value__c}"  rendered="{!isEdit}" /> -->
+                    <apex:outputText value="{!timeShow}" rendered="{!!isEdit}"/>   
+                </td>
+            </tr>
+            <tr>
+                <td Class="form-inline" style="padding: 10px">
+                    Enable Company Logo in Sidebar : 
+                </td>
+                <td></td>
+                <td>
+                    <apex:inputCheckbox value="{!showLogo}" style="zoom: 1" rendered="{!isEdit}"/>
+                   <apex:outputPanel rendered="{!!isEdit}">
+                       <apex:outputPanel style="zoom: 1.5" rendered="{!showLogo}"> &#10004; </apex:outputPanel>
+                       <apex:outputPanel style="zoom: 1.5" rendered="{!!showLogo}"> &#10008; </apex:outputPanel>
+                   </apex:outputPanel>
+                </td>
+            </tr>
+            <tr>
+                <td Class="form-inline" style="padding: 10px">
+                    Enable Audio on Incoming Message : 
+                </td>
+                <td></td>
+                <td>
+                    <apex:inputCheckbox value="{!enableAudio}" style="zoom: 1" rendered="{!isEdit}"/>
+                   <apex:outputPanel rendered="{!!isEdit}">
+                       <apex:outputPanel style="zoom: 1.5" rendered="{!enableAudio}"> &#10004; </apex:outputPanel>
+                       <apex:outputPanel style="zoom: 1.5" rendered="{!!enableAudio}"> &#10008; </apex:outputPanel>
+                   </apex:outputPanel>
+                </td>
+            </tr>
+             <tr style="background: #009688">
+                <th colspan="3" style="color: #fff">Conversation View Setting</th>
+            </tr>
+            <tr>
+                <td Class="form-inline" style="padding: 10px">
+                   Enable Company Logo in Conversation View :
+                </td>
+                <td></td>
+                <td>
+                    <apex:inputCheckbox value="{!logo_conversation}" style="zoom: 1" rendered="{!isEdit}"/>
+                   <apex:outputPanel rendered="{!!isEdit}">
+                       <apex:outputPanel style="zoom: 1.5" rendered="{!logo_conversation}"> &#10004; </apex:outputPanel>
+                       <apex:outputPanel style="zoom: 1.5" rendered="{!!logo_conversation}"> &#10008; </apex:outputPanel>
+                   </apex:outputPanel>  
+                </td>
+            </tr>
+            <tr style="background: #009688">
+                <th colspan="3" style="color: #fff">Reply From Email</th>
+            </tr>
+            <tr>
+                <td Class="form-inline" style="padding: 10px">
+                   Email Service Address  :
+                </td>
+                <td></td>
+                <td>
+                    <apex:outputpanel rendered="{!isEdit}">
+                        <apex:inputText value="{!replyFromEmailGeneralSetting.tdc_tsw__URL__c}" style="border: 1px solid #980606;" styleClass="form-control" rendered="{!blankCase}"/>
+                        <apex:inputText value="{!replyFromEmailGeneralSetting.tdc_tsw__URL__c}" styleClass="form-control" rendered="{!!blankCase}"/>
+                    </apex:outputpanel>
+                    <apex:outputText value="{!replyFromEmailGeneralSetting.tdc_tsw__URL__c}" rendered="{!!isEdit}"  />  
+                </td>
+            </tr>
+        </table>
+      </div>  
+         
+       <!--   <script type="text/javascript">                  
+                   var data = {!jsonString};
+                   var options = '';
+                   $.each(data, function(index, ele) {
+                       options += '<option value="'+ele['id']+'" >'+ele["text"]+'</option>';
+                   });
+                   
+                   var id = $(".search-picklist-setting").val();
+                   
+                   $(".search-picklist-setting").html(options);
+                   $(".search-picklist-setting").val(id);
+                   $(".search-picklist-setting").select2();
+                   $(".search-picklist").select2();
+               </script>-->
+      <script>
+        function checkYellowvalueJS(){
+            var redMins = document.getElementById(redColorId).value;
+            var yellowMins = document.getElementById(yellowColorId).value;
+            if(redMins == yellowMins){
+                //alert('equal');
+                checkYellowvalueAF(true);
+            }else{
+                checkYellowvalueAF(false);
+            }
+            //alert('notequal');
+        }
+        
+        function checkRedvalueJS(){
+            var redMins = document.getElementById(redColorId).value;
+            var yellowMins = document.getElementById(yellowColorId).value;
+            if(redMins == yellowMins){
+                //alert('equal');
+                checkRedvalueAF(true);
+            }else{
+                checkRedvalueAF(false);
+            }
+            //alert('notequal');
+        }
+      </script>
+        
+    </apex:form>
+    
+    
+  
+  
+  <!--   <script>
+     function showHideEmail(isAlert, componentId){
+        if(isAlert == true){
+      
+          document.getElementById("AdditionalEmailSection").style.display = '';
+        }
+        else{
+          document.getElementById("AdditionalEmailSection").style.display = 'none';
+          $('.AdditionalEmail').val('');
+        }
+     }
+     
+    function showHideMobile(isAlert, componentId){
+        if(isAlert == true){
+          document.getElementById("AutoForwardToMobileSection").style.display = '';
+         
+        }
+        else{
+          document.getElementById("AutoForwardToMobileSection").style.display = 'none';
+           $('.phone-number').val('');
+        }
+     }
+  </script>
+     -->
+     
+       <!--<apex:form styleclass="form-horizontal" id="frm">
+     
+         ****************** Page Content ***********************
+          
+          <div class="appusage_main" >  -->
+            <!--<apex:pageBlock id="pb">
+           
+            <div class="upload_con">
+              <table class="table">
+                <tr>
+                  <td style="text-align:right !important; width:50%"><label>Email Alert To Owner:</label></td>
+                  <td style="text-align:left !important; width:50%">
+                    <apex:outputField value="{!generalSetting.EmailAlertToOwner__c}" rendered="{!isReadOnly}"/>
+                    <apex:inputField value="{!generalSetting.EmailAlertToOwner__c}" rendered="{!!isReadOnly}"/>    
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="text-align:left !important;"><label>Email Alert To Additional Email:</label>
+                       <apex:outputField value="{!generalSetting.EmailAlertToAdditionalEmail__c}" rendered="{!isReadOnly}"/>
+                    <apex:inputField value="{!generalSetting.EmailAlertToAdditionalEmail__c}" id="alertToAdditional" rendered="{!!isReadOnly}" onclick="showHideEmail(this.checked, '{!$Component.AdditionalEmail}')" style="margin-left:5px" />
+                                        
+                  </td>
+                    
+                  <td style="padding-left: 158px; text-align: left !important;">
+                   <label>Auto Forward To Mobile:</label>
+                    <apex:outputField value="{!generalSetting.AutoForwardToMobile__c}" rendered="{!isReadOnly}"/>
+                    <apex:inputField value="{!generalSetting.AutoForwardToMobile__c}" id="autoForwardOption" rendered="{!!isReadOnly}" onclick="showHideMobile(this.checked, '{!$Component.AutoForwardToMobile}')"  style="margin-left:5px"/>
+                                      
+                  </td>
+                </tr>
+                <tr>
+                  <td style="text-align:left !important;" >
+                      <div id ="AdditionalEmailSection">
+                          <label> Additional Email:</label>
+                          <apex:outputField value="{!generalSetting.AdditionalEmail__c}" rendered="{!isReadOnly}"/>
+                          <apex:inputField value="{!generalSetting.AdditionalEmail__c}" rendered="{!!isReadOnly}" id="AdditionalEmail" styleClass="AdditionalEmail form-control" style="display:inline-block !important; margin-left:5px" />
+                      </div>    
+                  </td>
+                  <td >
+                      <div  id="AutoForwardToMobileSection" style="padding-left: 150px; text-align: left !important;">
+                        <label>Mobile Number:</label>
+                         <apex:outputField value="{!generalSetting.MobileNumber__c}" rendered="{!isReadOnly}"/>
+                         <apex:inputField value="{!generalSetting.MobileNumber__c}" rendered="{!!isReadOnly}" id="AutoForwardToMobile" styleClass="phone-number form-control" html-maxlength="15" style="margin-left:5px; display:inherit" />
+                      </div>
+                  </td>
+                </tr>
+              </table>-->
+              
+               <!--<apex:pageBlockButtons location="top" >
+                    <apex:commandButton action="{!editSetting}" value="Edit" rendered="{!isReadOnly}" style="width:100px;font-weight: 800; margin-bottom:21px" styleClass="btn btn1 btn-primary"  status="actStatusId" rerender="frm" />
+                    <apex:commandButton action="{!updateSetting}" value="Save"  rendered="{!!isReadOnly}"  style="width:100px;font-weight: 800; margin-bottom:21px" styleClass="btn btn1 btn-primary" status="actStatusId"  rerender="frm" />
+                    <script>
+                        $(".phone-number").intlTelInput({
+                            autoHideDialCode: true,
+                            autoPlaceholder: true,
+                            nationalMode: false
+                        });
+                    </script> -->
+                <!--</apex:pageBlockButtons>             
+            </div>    
+
+          </div>
+                <script>
+                     showHideEmail({!generalSetting.EmailAlertToAdditionalEmail__c}, '{!$Component.AdditionalEmail}');
+                     showHideMobile({!generalSetting.AutoForwardToMobile__c}, '{!$Component.AutoForwardToMobile}');
+                </script>
+                    
+                 <apex:outputpanel rendered="{!showErrorBlock}" style="position:relative;left:75px;">
+                    <div class="modal fade user_con" id="myModal" role="dialog">
+                      <div class="modal-dialog">
+                       
+                          <div class="modal-content">
+                            <div class="modal-body">
+                           
+                                <apex:outputpanel rendered="{!showInfo}">
+                                     <div class="errorblock info" style="">
+                                          <div class="text-left" style="padding: 20px;">
+                                             <apex:image url="{!URLFOR($Resource.resource_sms_file,'/img/info-icon.png')}" />
+                                              <div class="msgText">
+                                                   <span>INFO:</span>
+                                                   <p> {!errorMessage}</p>
+                                              </div>
+                                              <a href="#" data-dismiss="modal">X</a>
+                                              <div style="clear:both"></div>  
+                                          </div> 
+                                      </div> 
+                                </apex:outputpanel>
+                                <apex:outputpanel rendered="{!showSuccess}">
+                                    <div class="errorblock success">
+                                        <div class="text-left" style="padding: 20px;">
+                                            <apex:image url="{!URLFOR($Resource.resource_sms_file,'/img/success.png')}" />
+                                            <div class="msgText">
+                                                   <span>SUCCESS:</span>
+                                                   <p> {!errorMessage}</p>
+                                            </div> 
+                                            <a href="#" data-dismiss="modal">X</a>
+                                            <div style="clear:both"></div>  
+                                        </div> 
+                                    </div>
+                                </apex:outputpanel>
+                                <apex:outputpanel rendered="{!showError}">
+                                    <div class="errorblock error">
+                                        <div class="text-left" style="padding: 20px;">
+                                            <apex:image url="{!URLFOR($Resource.resource_sms_file,'/img/cancel.png')}" />
+                                            <div class="msgText">
+                                                   <span>ERROR:</span>
+                                                   <p> {!errorMessage}</p>
+                                            </div> 
+                                            <a href="#" data-dismiss="modal">X</a>
+                                            <div style="clear:both"></div>  
+                                        </div> 
+                                    </div>
+                                </apex:outputpanel>-->
+                                 <!--<apex:pageMessage severity="Info"    strength="1"    summary="" rendered="{!recordShowError}"/>
+                                
+                            </div>
+                            <div>-->
+                              <!--<button type="button" class="btn btn-default close_modal" data-dismiss="modal"  style="margin:15px 0">Close</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                    <script>
+                        $('#myModal').modal('show');
+                    </script>
+            </apex:outputpanel>
+            <apex:actionStatus id="actStatusId" >
+            <apex:facet name="start">
+                <div>
+                    <div  class="popupBackground">
+                        <img class="PopupPanel" src="{!$Resource.Loading_Icon}" alt="Loading..."  />
+                    </div>
+                </div>
+            </apex:facet>
+        </apex:actionStatus>
+     </apex:form>-->
+</apex:page>

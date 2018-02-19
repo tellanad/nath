@@ -1,0 +1,590 @@
+<apex:page controller="sftplib.ALoaderMappingHelperMultiObject" tabStyle="ImportBuddy__tab" sidebar="true" id="pg" showHeader="false" applyHtmlTag="false" standardStylesheets="false" applyBodyTag="false" docType="html-5.0">
+<link type="text/css" rel="stylesheet" href="https://www.lightningdesignsystem.com/assets/styles/slds.css"/>
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+        <head>
+        <meta charset="utf-8" />
+            <meta http-equiv="x-ua-compatible" content="ie=edge" />
+            <title>ImportBuddy</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <!-- Import the Design System style sheet -->
+            <apex:slds />
+        </head>
+        <BODY>
+            <div class="slds-scope">
+                <!--Jquery UI -->
+                <apex:includeScript value="{!$Resource.sftplib__jquery_min}"/>
+                <apex:stylesheet value="{!$Resource.sftplib__jquery_ui}"/>
+                <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+                <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+                <script>$j = jQuery.noConflict();</script>
+                <apex:stylesheet value="{!URLFOR($Resource.sftplib__Lightning, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
+                <apex:stylesheet value="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+                <style>
+                
+                .msgIcon {
+                    display: none!important
+                }
+                .customMessage * {
+                    color: #fff!important
+                }
+                .customMessage {
+                    margin: 5px 0!important;
+                    max-width: 1280px;
+                    opacity: 1!important;
+                    width: 100%;
+                    font-size: 12px;
+                    border: 0px;
+                    padding-left: 10px;
+                }
+                .message {
+                    opacity: .1
+                }
+                .scrollToTop{
+                    background: whiteSmoke;
+                    position:fixed;
+                    top:50%;
+                    right:1%;
+                    display:none;
+                }
+                .scrollToTop:hover{
+                    text-decoration:none;
+                }
+                .scrollToDown{
+                    background: whiteSmoke;
+                    position:fixed;
+                    top:40%;
+                    right:1%;
+                    display:none;
+                }
+                .scrollToDown:hover{
+                    text-decoration:none;
+                }
+                    #filter{
+                        display: none;
+                        position: fixed;
+                        top: 0%;
+                        left: 0%;
+                        width: 100%;
+                        height: 100%;
+                        background-image:url({!URLFOR($Resource.sftplib__ImportBuddy,'ajax-loader(4).gif')});
+                        background-repeat:no-repeat;
+                        background-position:center;
+                        background-color: #ffffff;
+                        z-index:10;
+                        opacity:0.6;
+                        filter: alpha(opacity=50);
+                    }
+                    .progressBar{
+                        background-color: #f8f8f8;
+                        border:1px solid #DDDDDD;
+                        height: 19px;
+                        width: 300px;
+                        -moz-border-radius: 5px; 
+                        -webkit-border-radius: 5px;
+                    }
+                    .progress{
+                        background-color: #F7B64B;
+                        border:1px solid #E78F08;
+                        height: 100%;
+                        margin: -1px;
+                        text-align: center;
+                        -moz-border-radius: 5px; 
+                        -webkit-border-radius: 5px;
+                        line-height: 18px;
+                    }
+                    .selectedmapping{
+                        background: rgb(218, 217, 217) !important;
+                    }
+                    .ui-dialog .ui-dialog-content{
+                        overflow: visible !important;
+                    }
+                    .ui-widget-header {
+                        background-image: url({!URLFOR($Resource.sftplib__ImportBuddy,'images/ui-bg_gloss-wave_55_5c9ccc_500x100.png')}) !important;
+                        border: 1px solid #c5dbec !important; 
+                    }
+                    .ui-icon {
+                        border: 1px solid #c5dbec !important;  
+                        width: 16px !important; 
+                        height: 16px !important ;
+                        background-color :#fff !important;
+                        background-image: url({!URLFOR($Resource.sftplib__ImportBuddy,'images/ui-icons_228ef1_256x240.png')}) !important;
+                    }
+                    .ui-icon-clock { padding: 8px !important;background-position: -80px -113px !important;}
+                    .ui-icon-calendar { padding: 8px !important;background-position: -32px -113px !important; }
+                    .ui-icon-extlink { padding: 8px !important;background-position: -32px -81px !important; }
+                    .ui-icon-circle-zoomin {padding: 8px !important; background-position: -176px -192px !important; }
+                    .custom-combobox {
+                        position: relative;
+                        display: inline-block;
+                    }
+                    .custom-combobox-toggle {
+                        position: absolute;
+                        top: 0;
+                        bottom: 0;
+                        margin-left: -1px;
+                        padding: 0;
+                    }
+                    .custom-combobox-input {
+                        margin: 0;
+                        padding: 5px 10px;
+                    }
+                    .pbTitle {
+                        white-space: nowrap !important;
+                    }
+                </style>
+                <script>
+                    var selObject;
+                    var selChildObject;
+                    function setFocus() {
+                    if($.trim($('[id$=msgs]').html())!='') {
+                         $("html, body").animate({ scrollTop: 0 }, "slow");
+                    }
+                    }
+                     $(document).ready(function(){
+                           overridePageMessages();    
+                        });
+                           
+                        function overridePageMessages(){    
+                            var textureEffect = '';
+                            //Uncomment below line for texture effect on page messages
+                            //textureEffect = 'slds-theme--alert-texture';
+                                        
+                            $('.warningM3').addClass('slds-notify slds-notify--toast slds-theme--warning customMessage '+textureEffect);          
+                            $('.confirmM3').addClass('slds-notify slds-notify--alert slds-theme--success  customMessage '+textureEffect);    
+                            $('.errorM3').addClass('slds-notify slds-notify--alert slds-theme--error customMessage '+textureEffect);                  
+                            $('.infoM3').addClass('slds-notify slds-notify--toast customMessage '+textureEffect);    
+                                            
+                            $('.errorM3').removeClass('errorM3'); 
+                            $('.confirmM3').removeClass('confirmM3'); 
+                            $('.infoM3').removeClass('infoM3');   
+                            $('.warningM3').removeClass('warningM3');  
+                        }
+                    function searchObjFields(searchObj,callback){
+                        var searchText = searchObj.term;
+                        Visualforce.remoting.Manager.invokeAction(
+                            '{!$RemoteAction.ALoaderMappingHelperMultiObject.getSearchField}',
+                            searchText,selObject,
+                            function(result,event){
+                                callback(result); 
+                            },
+                            {escape: false}
+                        );
+                    }
+                    function selectedObject(selObj){
+                        selObject = selObj;
+                    }
+                    function searchChildObjFields(searchObj,callback){
+                        var searchText = searchObj.term;
+                        Visualforce.remoting.Manager.invokeAction(
+                            '{!$RemoteAction.ALoaderMappingHelperMultiObject.getSearchField}',
+                            searchText,selChildObject,
+                            function(result,event){
+                                callback(result); 
+                            },
+                            {escape: false}
+                        );
+                    }
+                    function selectedChildObject(selChildObj){
+                        selChildObject = selChildObj;
+                    }
+                    function startProcess(){
+                        document.getElementById("{!$Component.pg.frm.loading}").style.display = 'block';  
+                        document.getElementById('filter').style.display = 'block';
+                    }
+                    function endProcess(){
+                        document.getElementById("{!$Component.pg.frm.loading}").style.display = 'none';
+                        document.getElementById('filter').style.display = 'none'; 
+                    }
+                    $(document).ready(function(){
+        
+                        //Check to see if the window is top if not then display button
+                        $(window).scroll(function(){
+                            if ($(this).scrollTop() > 100) {
+                                $('.scrollToTop').fadeIn();
+                            } else {
+                                $('.scrollToTop').fadeOut();
+                            }
+                            if ($(this).scrollTop() > 100) {
+                                $('.scrollToDown').fadeOut();
+                            } else {
+                                $('.scrollToDown').fadeIn();
+                            }
+                        });
+                        
+                        //Click event to scroll to top
+                        $('.scrollToTop').click(function(){
+                            $('html, body').animate({scrollTop : 0},800);
+                            return false;
+                        });
+                        
+                        //Click event to scroll to top
+                        $('.scrollToDown').click(function(){
+                            $('html, body').animate({scrollTop : $(document).height()},0);
+                            return false;
+                        });
+                        
+                    });
+                    (function( $ ) {
+                        $.widget( 'slds.autocomplete', $.ui.autocomplete, {
+                            _create: function() {
+                                this._super();
+                                this.sldsMenu = $('<div>')
+                                    .addClass('slds-lookup__menu slds-hide')
+                                    .attr('role', 'listbox')
+                                    this.element.parentsUntil('.slds-lookup').append( this.sldsMenu );
+                                    $('.ui-helper-hidden, .ui-helper-hidden-accessible').addClass('slds-hide');
+                            },
+                            _renderMenu: function( ul, items ) {
+                                var self = this;
+                                ul.addClass('slds-lookup__list').attr('role', 'presentation');
+                                ul.appendTo( this.sldsMenu );
+                                this.sldsMenu.addClass('slds-show').removeClass('slds-hide');
+                                $.each( items, function( index, item ) {
+                                    self._renderItemData( ul, item );
+                                });
+                            },
+                            _renderItem: function( ul, item ) {
+                                return $('<li>')
+                                .addClass('slds-lookup__item')
+                                .append( '<a href="#gridtable" role="option">' + item.label + '</a>' )
+                                .appendTo( ul );
+                            },
+                            _close: function( event ) {
+                                this._super( event );
+                                this.sldsMenu.addClass('slds-hide').removeClass('slds-show');
+                            }
+                        });
+                    })( jQuery );
+                </script>
+                <apex:pageMessages id="msgs" />
+                <apex:form id="frm">
+                    <div id="filter"></div>
+                    <apex:actionFunction action="{!objSelected}" oncomplete="endProcess();" name="objectselected" rerender="tableblock,gridtable,EMPBS,pb2,pb3,childgridtable,msgs"/>
+                    <apex:actionFunction action="{!saveMapping}" oncomplete="endProcess();setFocus();overridePageMessages();" name="saveMappingAF" rerender="gridtable,childgridtable,mappingPBS,EMPBS,msgs"/>
+                    <apex:actionFunction action="{!UpdateMapping}" oncomplete="endProcess();setFocus();overridePageMessages()" name="updateMapping" rerender="gridtable,childgridtable,EMPBS,msgs" />
+                    <apex:actionFunction action="{!childobjSelected}" oncomplete="endProcess();" name="childobjselected" rerender="tableblock,childgridtable,EMPBS,pb3,msgs"/>
+                    <apex:actionFunction action="{!selectobjectvalidation}" oncomplete="endProcess();" name="selectobject" rerender="msgs"/>
+                    <apex:actionFunction action="{!fieldSelected}" oncomplete="endProcess();" name="fieldselected" rerender="gridtable,msgs">
+                        <apex:param name="firstParam" assignTo="{!indexworking}" value="" />
+                        <apex:param name="secondParam" assignTo="{!workingIndexVal}" value="" />
+                        <apex:param name="thirdParam" assignTo="{!workingIndexLabel}" value="" />
+                    </apex:actionFunction>
+                    <apex:actionFunction action="{!deleteValue}" oncomplete="endProcess();" name="deleteValue" rerender="gridtable,msgs">
+                        <apex:param name="firstParam" assignTo="{!indexworking}" value="" />
+                    </apex:actionFunction>
+                    <apex:actionFunction action="{!childfieldSelected}" oncomplete="endProcess();" name="childfieldSelected" rerender="childgridtable,msgs">
+                        <apex:param name="firstParam" assignTo="{!childindexworking}" value="" />
+                        <apex:param name="secondParam" assignTo="{!workingChildIndexVal}" value="" />
+                        <apex:param name="thirdParam" assignTo="{!workingChildIndexLabel}" value="" />
+                    </apex:actionFunction>
+                    <apex:actionFunction action="{!deleteChildValue}" oncomplete="endProcess();" name="deleteChildValue" rerender="childgridtable,msgs">
+                        <apex:param name="firstParam" assignTo="{!childindexworking}" value="" />
+                    </apex:actionFunction>
+                    <apex:actionFunction action="{!exportMapping}" oncomplete="endProcess();" name="exportselected">
+                        <apex:param name="firstParam" assignTo="{!mid}" value="" />
+                    </apex:actionFunction>
+                    <apex:inputHidden value="{!Fieldselect}" id="fieldvalues"/>
+                    <apex:image url="{!URLFOR($Resource.sftplib__ImportBuddy,'ajax-loader(4).gif')}" id="loading" style="display:none;position:fixed;top:50%;left:50%;z-index:10;"/>
+                    
+                    <apex:outputpanel id="pg" rendered="{!AND(NOT(ISNULL(aid)),isValidFile)}">
+                        <div class="demo-only demo-only--sizing slds-grid slds-wrap">
+                            <div class="slds-size_1-of-4">
+                                <div class="slds-box slds-box_x-small slds-text-align_center slds-m-around_x-small">
+                                    <apex:outputpanel id="pg1">
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-form-element__label" for="text-input-id-1">
+                                                Parent
+                                            </div>
+                                            <apex:selectList styleClass="slds-select" id="obeject" value="{!obj}" label="Referance" multiselect="false" style="padding-right:0px" size="1" disabledClass="selectedmapping" onchange="startProcess();selectedObject(this.value);objectselected();">
+                                                <apex:selectOptions value="{!AllTables}"/>
+                                            </apex:selectList>
+                                        </div>
+                                    </apex:outputpanel>
+                                </div>
+                            </div>
+                            <div class="slds-size_1-of-4">
+                                <div class="slds-box slds-box_x-small slds-text-align_center slds-m-around_x-small">
+                                    <apex:outputpanel id="pb2">
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-form-element__label" for="text-input-id-1">
+                                                Child
+                                            </div>
+                                            <apex:selectList styleClass="slds-select" id="childobeject" value="{!childobj}" multiselect="false" size="1" disabledClass="selectedmapping" onchange="startProcess();selectedChildObject(this.value);childobjselected()">
+                                                <apex:selectOptions value="{!ChildAllTables}"/>
+                                            </apex:selectList>
+                                        </div>
+                                    </apex:outputpanel>
+                                </div>
+                            </div>
+                            <div class="slds-size_1-of-4">
+                                <div class="slds-box slds-box_x-small slds-text-align_center slds-m-around_x-small">
+                                    <apex:outputpanel id="pb3">
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-form-element__label" for="text-input-id-1">
+                                                Reference Field
+                                            </div>
+                                            <apex:selectList styleClass="slds-select" id="reference" value="{!reference}" multiselect="false" size="1">
+                                                <apex:selectOptions value="{!ReferanceResult}"/>
+                                            </apex:selectList>
+                                        </div>
+                                    </apex:outputpanel>
+                                </div>
+                            </div>
+                            <div class="slds-size_1-of-4">
+                                <div class="slds-box slds-box_x-small slds-text-align_center slds-m-around_x-small">
+                                    <apex:outputpanel id="pb4">
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-form-element__label" for="text-input-id-1">
+                                                Operation
+                                            </div>
+                                            <apex:selectList styleClass="slds-select" value="{!operation}" multiselect="false" size="1" >
+                                                <apex:selectOption itemValue="none" itemLabel="--Select Operation--"/>
+                                                <apex:selectOption itemValue="INSERT" itemLabel="INSERT"/>
+                                                <apex:selectOption itemValue="UPDATE" itemLabel="UPDATE"/>
+                                                <!-- <apex:selectOption itemValue="UPSERT" itemLabel="UPSERT"/>-->
+                                            </apex:selectList>
+                                        </div>
+                                    </apex:outputpanel>
+                                </div>
+                            </div>
+                        </div>
+                    </apex:outputpanel>
+                    <apex:outputPanel id="EMPBS" rendered="{!AND(NOT(ISNULL(aid)),isValidFile)}">
+                        <br/>
+                        <div class="slds-page-header" role="banner">
+                            <p class="slds-page-header__title slds-truncate slds-align-middle">Saved mappings for this object</p>
+                        </div>
+                        <br/>
+                        <div class="demo-only demo-only--sizing slds-grid slds-wrap">
+                            <div class="slds-size_1-of-3">
+                                <div class="slds-box slds-box_x-small slds-text-align_center slds-m-around_x-small">
+                                    <div class="foo">
+                                        <apex:dataTable value="{!savedmappings}" var="sm" id="mappingtable" styleClass="slds-table slds-table--bordered slds-table--striped">
+                                            <apex:column styleClass="slds-cell-wrap" >
+                                                <apex:facet name="header">Mapping Name</apex:facet>
+                                                <a href="/{!sm.Id}" target="_blank" 
+                                                    id="{!sm.Id}">
+                                                {!sm.name}
+                                                </a> 
+                                            </apex:column>
+                                            <apex:column styleClass="slds-cell-wrap">
+                                                <apex:facet name="header">Description</apex:facet>
+                                                <apex:outputText > {!sm.sftplib__Description__c} </apex:outputText>
+                                            </apex:column>
+                                            <apex:column styleClass="slds-cell-wrap" >
+                                                <apex:facet name="header">View</apex:facet>
+                                                <apex:commandLink action="{!viewmapping}" onclick="startProcess();" oncomplete="endProcess();" rerender="EMPBS,msgs" styleclass="ui-state-default ui-corner-all ui-icon ui-icon-circle-arrow-e" >
+                                                    <apex:param value="{!sm.id}" name="smid" assignTo="{!smid}"/>
+                                                </apex:commandLink>
+                                            </apex:column>
+                                            <apex:column styleClass="slds-cell-wrap" >
+                                                <apex:facet name="header">Select</apex:facet>
+                                                <apex:commandLink id="mappinglink" action="{!mappingSelected}" onclick="startProcess();" oncomplete="endProcess();setFocus();overridePageMessages()" rerender="tableblock,EMPBS,msgs" styleclass="ui-state-default ui-corner-all ui-icon ui-icon-circle-check" >
+                                                    <apex:param value="{!sm.id}" name="mid" assignTo="{!mid}"/>
+                                                </apex:commandLink>
+                                                <apex:inputHidden id="mappingid" value="{!sm.id}"/>
+                                            </apex:column>
+                                            <apex:column styleClass="slds-cell-wrap" >
+                                                <apex:facet name="header">Update</apex:facet>
+                                                <apex:commandLink rendered="{!(sm.id == mid)}" onClick="startProcess();updateMapping();" oncomplete="endProcess();" styleclass="ui-state-default ui-corner-all ui-icon ui-icon ui-icon-circle-arrow-w" reRender="tableblock,loadbutton,msgs"/>
+                                            </apex:column>
+                                            <apex:column styleClass="slds-cell-wrap" >
+                                                <apex:facet name="header">Export</apex:facet>
+                                                <a href="loadmapping" onClick="exportselected('{!sm.id}');return false;" onComplete="endProcess();" class="ui-state-default ui-corner-all ui-icon ui-icon-circle-arrow-s"></a>  
+                                            </apex:column>
+                                        </apex:dataTable>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-size_1-of-3">
+                                <div class="slds-box slds-box_x-small slds-text-align_center slds-m-around_x-small">
+                                    <div class="foo">
+                                        <apex:dataTable value="{!filedmappings}" var="fm" id="filedmapping" styleClass="slds-table slds-table--bordered slds-table--striped">
+                                            <apex:column styleClass="slds-cell-wrap">
+                                                <apex:facet name="header">Header</apex:facet>
+                                                <apex:outputText > {!fm.sftplib__Header__c} </apex:outputText>
+                                            </apex:column>
+                                            <apex:column styleClass="slds-cell-wrap">
+                                                <apex:facet name="header">Map To</apex:facet>
+                                                <apex:outputText > {!fm.sftplib__API__c} </apex:outputText>
+                                            </apex:column>
+                                        </apex:dataTable>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-size_1-of-3">
+                                <div class="slds-box slds-box_x-small slds-text-align_center slds-m-around_x-small">
+                                    <div class="foo">
+                                        <apex:dataTable value="{!childfiledmappings}" var="cfm" id="childfiledmapping" styleClass="slds-table slds-table--bordered slds-table--striped">
+                                            <apex:column styleClass="slds-cell-wrap">
+                                                <apex:facet name="header">Header</apex:facet>
+                                                <apex:outputText > {!cfm.sftplib__Header__c} </apex:outputText>
+                                            </apex:column>
+                                            <apex:column styleClass="slds-cell-wrap">
+                                                <apex:facet name="header">Map To</apex:facet>
+                                                <apex:outputText > {!cfm.sftplib__API__c} </apex:outputText>
+                                            </apex:column>
+                                        </apex:dataTable>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </apex:outputpanel>
+                    <apex:outputPanel id="tableblock" rendered="{!AND(NOT(ISNULL(aid)),isValidFile)}">
+                        <apex:outputPanel rendered="{!IF(mappingname != null && mappingname !='' , true,false)}"> Selected Mapping Name:<b> {!mappingname}</b></apex:outputPanel>
+                        <div class="demo-only demo-only--sizing slds-grid slds-wrap">
+                            <div class="slds-size_1-of-2">
+                                <br/>
+                                <div class="slds-page-header" role="banner">
+                                    <p class="slds-page-header__title slds-truncate slds-align-middle">Select Parent Mapping</p>
+                                </div>
+                                <div class="slds-box slds-box_x-small slds-text-align_center slds-m-around_x-small">
+                                    <div class="foo">
+                                        <apex:dataTable value="{!gridrows}" var="c" id="gridtable" title="Select Parent Mapping" styleClass="slds-table slds-table--bordered slds-table--striped">
+                                            <apex:column styleClass="slds-cell-wrap">
+                                                <apex:facet name="header">CSV Header</apex:facet>
+                                                <apex:outputText value="{!c.csvheader}" />
+                                            </apex:column>
+                                            <apex:column styleClass="slds-cell-wrap" style="width:200px !important">
+                                                <apex:facet name="header">Map To</apex:facet>
+                                                <apex:panelGroup id="fieldsPG">
+                                                    <div class="slds-lookup" data-select="single" data-scope="single" data-typeahead="true">
+                                                        <div class="slds-form-element">
+                                                            <input id="Parent{!c.index}" value="{!c.label}" class="slds-input slds-show" type="text" aria-autocomplete="list" role="combobox" aria-expanded="true" aria-activedescendant="" />
+                                                        </div>
+                                                        <apex:outputPanel rendered="{!c.label!=null && c.label!=''}">
+                                                            Type : <apex:outputText value="{!c.datatype}"/>
+                                                            <apex:selectList value="{!c.lookupfield}" multiselect="false" size="1" label="" rendered="{!IF(AND(NOT(ISBLANK(c.lookupfieldops)),c.lookupfieldops.size>0),true,false)}" >
+                                                                <apex:selectOptions value="{!c.lookupfieldops}"/>
+                                                            </apex:selectList>
+                                                        </apex:outputPanel>
+                                                    </div>
+                                                    <script>
+                                                        $j(function() {
+                                                            $j('#Parent{!c.index}').autocomplete({
+                                                                delay:500,
+                                                                minLength:1,
+                                                                source: function(a,b){
+                                                                    searchObjFields(a,b);
+                                                                },
+                                                                select:function(event,ui){
+                                                                    startProcess();
+                                                                    fieldselected({!c.index},ui.item.apiName,ui.item.label);
+                                                                },
+                                                                change:function(event,ui){
+                                                                    if(ui.item==null){
+                                                                        startProcess();
+                                                                        deleteValue({!c.index});
+                                                                    }
+                                                                }
+                                                            });
+                                                        });
+                                                    </script>
+                                                </apex:panelGroup>
+                                            </apex:column>
+                                            <apex:column styleClass="slds-cell-wrap">
+                                                <apex:facet name="header">Identifier</apex:facet>
+                                                <apex:inputCheckbox value="{!c.identifier}" id="checkedone" rendered="{!(c.datatype == "STRING" || c.datatype == "ID")}" />
+                                            </apex:column>
+                                        </apex:dataTable>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-size_1-of-2">
+                                <br/>
+                                <div class="slds-page-header" role="banner">
+                                    <p class="slds-page-header__title slds-truncate slds-align-middle">Select Child Mapping</p>
+                                </div>
+                                <div class="slds-box slds-box_x-small slds-text-align_center slds-m-around_x-small">
+                                    <div class="foo">
+                                        <apex:dataTable value="{!childgridrows}" var="r" id="childgridtable" title="Select Child Mapping" styleClass="slds-table slds-table--bordered slds-table--striped">
+                                            <apex:column styleClass="slds-cell-wrap">
+                                                <apex:facet name="header">CSV Header</apex:facet>
+                                                <apex:outputText value="{!r.csvheader}" />
+                                            </apex:column>
+                                            <apex:column styleClass="slds-cell-wrap" style="width:200px !important">
+                                                <apex:facet name="header">Map To</apex:facet>
+                                                <apex:panelGroup id="fieldsChildPG">
+                                                    <div class="slds-lookup" data-select="single" data-scope="single" data-typeahead="true">
+                                                        <div class="slds-form-element">
+                                                            <input id="Child{!r.index}" value="{!r.label}" class="slds-input slds-show" type="text" aria-autocomplete="list" role="combobox" aria-expanded="true" aria-activedescendant="" />
+                                                        </div>
+                                                        <apex:outputPanel rendered="{!r.label!=null && r.label!=''}">
+                                                            Type<apex:outputText value=" : {!r.datatype}"/>
+                                                            <apex:selectList value="{!r.lookupfield}" multiselect="false" size="1" label="" rendered="{!IF(AND(NOT(ISBLANK(r.lookupfieldops)),r.lookupfieldops.size>0),true,false)}" >
+                                                                <apex:selectOptions value="{!r.lookupfieldops}"/>
+                                                            </apex:selectList>
+                                                        </apex:outputPanel>
+                                                    </div>
+                                                    <script>
+                                                        $j(function() {
+                                                            $j('#Child{!r.index}').autocomplete({
+                                                                delay:500,
+                                                                minLength:1,
+                                                                source: function(a,b){
+                                                                    searchChildObjFields(a,b);
+                                                                },
+                                                                select:function(event,ui){
+                                                                    startProcess();
+                                                                    childfieldSelected({!r.index},ui.item.apiName,ui.item.label);
+                                                                },
+                                                                change:function(event,ui){
+                                                                    if(ui.item==null){
+                                                                        startProcess();
+                                                                        deleteChildValue({!r.index});
+                                                                    }
+                                                                }
+                                                            });
+                                                        });
+                                                    </script>
+                                                </apex:panelGroup>
+                                            </apex:column>
+                                            <apex:column styleClass="slds-cell-wrap">
+                                                <apex:facet name="header">Identifier</apex:facet>
+                                                <apex:inputCheckbox value="{!r.identifier}" id="checkedone" rendered="{!(r.datatype == "STRING" || r.datatype == "ID")}" />
+                                            </apex:column>
+                                        </apex:dataTable>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </apex:outputpanel>
+                    <apex:outputPanel id="mappingPBS">
+                        <br/>
+                        <div class="slds-page-header" role="banner">
+                            <p class="slds-page-header__title slds-truncate slds-align-middle">Save Mapping</p>
+                        </div>
+                        <div class="demo-only demo-only--sizing slds-grid slds-wrap">
+                            <div class="slds-size_1-of-2">
+                                <div class="slds-box slds-box_x-small slds-text-align_center slds-m-around_x-small">
+                                    <div class="slds-form-element__control">
+                                        <div class="slds-form-element__label" for="text-input-id-1">
+                                            Name
+                                        </div>
+                                        <apex:inputField value="{!savedmapping.Name}" styleClass="slds-input"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-size_1-of-2">
+                                <div class="slds-box slds-box_x-small slds-text-align_center slds-m-around_x-small">
+                                    <div class="slds-form-element__control">
+                                        <div class="slds-form-element__label" for="text-input-id-1">
+                                            Description
+                                        </div>
+                                        <apex:inputField value="{!savedmapping.sftplib__Description__c}" styleClass="slds-input"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </apex:outputPanel>
+                    <center>
+                        <apex:commandButton rendered="{!AND(NOT(ISNULL(aid)),isValidFile)}" onclick="startProcess();saveMappingAF();" value="Save Mapping" reRender="gridtable,childgridtable,mappingPBS,EMPBS,msgs"  styleClass="slds-button slds-button_brand"/>
+                        <apex:commandButton rendered="{!AND(NOT(ISNULL(aid)),isValidFile)}" action="{!startLoading}" onclick="startProcess();"  onComplete="endProcess();setFocus();overridePageMessages()"  value="Start DataLoad" rerender="msgs" styleClass="slds-button slds-button_brand"/>
+                    </center>
+                    <a href="#" class="scrollToTop"><img title="Scroll Top" src="{!$Resource.top_Arrow}" style="width: 40px;"/></a>
+                    <a href="#" class="scrollToDown"><img title="Scroll Down" src="{!$Resource.down_Arrow}" style="width: 40px;"/></a>
+                </apex:form>
+            </div>
+        </BODY>
+    </html>
+</apex:page>

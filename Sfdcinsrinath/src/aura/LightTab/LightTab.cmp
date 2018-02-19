@@ -1,0 +1,16 @@
+<aura:component >
+	<div class="white">
+    Hello,HTML!
+    </div> 
+    <h2>Check out the stle in this list </h2>
+    <ul>
+        <li class="red">I am red .</li>
+        <li class="blue"> I am Blue.</li>
+        <li class="Green">I am Green. </li>
+    </ul>
+    
+    HEllo, World!
+    <aura:html tag="div"/>
+    <br/>
+    
+</aura:component>

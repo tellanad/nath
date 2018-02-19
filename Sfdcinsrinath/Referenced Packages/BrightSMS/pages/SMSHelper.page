@@ -1,0 +1,3 @@
+<apex:page id="SMSHelperPage" standardcontroller="BG_SMS__SMS_Account__c" extensions="BG_SMS.SMSHelperController" action="{!getClickSmsPage}">
+
+</apex:page>

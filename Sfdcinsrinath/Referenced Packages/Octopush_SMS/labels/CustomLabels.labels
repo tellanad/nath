@@ -1,0 +1,944 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>Blank_site_url</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Blank site url</shortDescription>
+        <value>Site url cannot be blank</value>
+    </labels>
+    <labels>
+        <fullName>CONFIRM_ESTIMATION_COST_COMPLETED</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Estimation cost label</shortDescription>
+        <value>Estimation cost completed! Click on Send SMS if you wish to send your SMS campaign</value>
+    </labels>
+    <labels>
+        <fullName>CONFIRM_SAVE_SUCCESSFUL</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Save successful label</shortDescription>
+        <value>Save successful</value>
+    </labels>
+    <labels>
+        <fullName>CONFIRM_TASK_GENERATED_1</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Octopush workflow settings: Task generated line 1 label</shortDescription>
+        <value>Task comment generated!</value>
+    </labels>
+    <labels>
+        <fullName>CONFIRM_TASK_GENERATED_2</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Octopush workflow settings: Task generated step 2 label</shortDescription>
+        <value>STEP 1: Copy task comment in your clipboard</value>
+    </labels>
+    <labels>
+        <fullName>CONFIRM_TASK_GENERATED_3</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Octopush workflow settings: Task generated step 3 label</shortDescription>
+        <value>STEP 2: Create or edit an existing workflow and add a task with unique name starting with &quot;o_sms&quot;</value>
+    </labels>
+    <labels>
+        <fullName>CONFIRM_TASK_GENERATED_4</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Octopush workflow settings: Task generated step 4 label</shortDescription>
+        <value>STEP 3: Paste the code (step 1) in task comments field</value>
+    </labels>
+    <labels>
+        <fullName>CONFIRM_TASK_GENERATED_5</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Octopush workflow settings: Task generated step 5 label</shortDescription>
+        <value>See documentation if you need more details</value>
+    </labels>
+    <labels>
+        <fullName>CONFIRM_TOTAL_SMS_SENT</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>SMS sent successful label</shortDescription>
+        <value>SMS sent successful</value>
+    </labels>
+    <labels>
+        <fullName>Delivered</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Delivered</shortDescription>
+        <value>Delivered</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CAMPAIGN_HAS_NO_MEMBERS</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error message for campaign with no members</shortDescription>
+        <value>This campaign has no members.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_000</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 000</shortDescription>
+        <value>OK</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_100</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 100</shortDescription>
+        <value>POST request missing.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_101</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 101</shortDescription>
+        <value>Incorrect login details.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_102</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 102</shortDescription>
+        <value>Your SMS exceeds 160 characters</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_103</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 103</shortDescription>
+        <value>Your message has no recipients</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_104</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 104</shortDescription>
+        <value>You have run out of credit.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_105</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 105</shortDescription>
+        <value>You don&apos;t have enough credit on your balance, but your last order is waiting for being validated</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_106</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 106</shortDescription>
+        <value>You have entered the Sender incorrectly. 3 to 11 characters, chosen from 0 to 9, a to z, A to Z. No accents, spaces or punctuation.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_107</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 107</shortDescription>
+        <value>The text of your message is missing.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_108</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 108</shortDescription>
+        <value>You have not entered your login details.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_109</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 109</shortDescription>
+        <value>You have not entered your password.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_110</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 110</shortDescription>
+        <value>You have not entered the list of recipients.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_111</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 111</shortDescription>
+        <value>You have not chosen a way to enter your recipients.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_112</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 112</shortDescription>
+        <value>You have not defined the quality of your message.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_113</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 113</shortDescription>
+        <value>Your account is not validated. Log in Octopush and go to the &quot;User interface&quot; section.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_114</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 114</shortDescription>
+        <value>You are under investigation for the fraudulent use of our services.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_115</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 115</shortDescription>
+        <value>The recipient number is different from the number of one of the parameters that you have related it to.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_116</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 116</shortDescription>
+        <value>The mailing option only works by using a contact list.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_117</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 117</shortDescription>
+        <value>Your recipient list contains no correct numbers. Have you formatted your numbers by including the international dialling code? Contact us if you have any problems.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_118</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 118</shortDescription>
+        <value>You must tick one of the two boxes to indicate if you do not wish to send test SMS or if you have correctly received and validated it.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_119</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 119</shortDescription>
+        <value>You cannot send SMS with more than 160 characters for this type of SMS</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_120</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 120</shortDescription>
+        <value>A SMS with the same request_id has already been sent.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_121</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 121</shortDescription>
+        <value>In Premium SMS, the mention &quot;STOP au XXXXX&quot; is mandatory and must belong to your text (respect the case).</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_122</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 122</shortDescription>
+        <value>In Standard SMS, the mention &quot;no PUB rep STOP&quot; is mandatory and must belong to your text (respect the case).</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_123</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 123</shortDescription>
+        <value>The field request_sha1 is missing.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_124</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 124</shortDescription>
+        <value>The field request_sha1 does not match. The data is wrong, or the query string contains an error or the frame contains an error : the request is rejected.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_125</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 125</shortDescription>
+        <value>An undefined error has occurred. Please contact support.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_126</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 126</shortDescription>
+        <value>An SMS campaign is already waiting for approval to send. You must validate or Cancel it in order to to start another.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_127</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 127</shortDescription>
+        <value>An SMS campaign is already being processed. You must wait for processing to be completed in order to start another.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_128</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 128</shortDescription>
+        <value>Too many attempts have been made. You need to start a new campaign.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_129</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 129</shortDescription>
+        <value>Campaign is being built.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_130</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 130</shortDescription>
+        <value>Campaign has not been set as finished.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_131</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 131</shortDescription>
+        <value>Campaign not found. Please check that you have at least one valid mobile phone.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_150</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 150</shortDescription>
+        <value>No country was found for this country.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_151</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 151</shortDescription>
+        <value>The recipient country is not part of the countries serviced by Octopush.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_152</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 152</shortDescription>
+        <value>You cannot send low cost SMS to this country. Choose Premium SMS</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_153</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 153</shortDescription>
+        <value>The route is congested. This type of SMS cannot be dispatched immediately. If your order is urgent, please use another type of SMS.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_201</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 201</shortDescription>
+        <value>This option is only available on request. Do not hesitate to request access if you need it.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_202</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 202</shortDescription>
+        <value>The email account you wish to credit is incorrect.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_203</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 203</shortDescription>
+        <value>You already have tokens in use. You can only have one session open at a time.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_204</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 204</shortDescription>
+        <value>You specified a wrong token.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_205</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 205</shortDescription>
+        <value>The number of text messages you want to transfer is too low.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_206</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 206</shortDescription>
+        <value>You may not run campaigns during a credit transfer.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_207</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 207</shortDescription>
+        <value>You do not have access to this feature.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_208</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 208</shortDescription>
+        <value>Wrong type of SMS.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_209</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 209</shortDescription>
+        <value>You are not allowed to send SMS messages to this user.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_210</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 210</shortDescription>
+        <value>This email is not specified in any of your sub accounts or affiliate users.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_300</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 300</shortDescription>
+        <value>You are not authorized to manage your lists by API.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_301</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 301</shortDescription>
+        <value>You have reached the maximum number of lists.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_302</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 302</shortDescription>
+        <value>A list with the same name already exists.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_303</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 303</shortDescription>
+        <value>The specified list does not exist.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_304</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 304</shortDescription>
+        <value>The list is already full.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_305</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 305</shortDescription>
+        <value>There are too many contacts in the query.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_CODE_306</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Code 306</shortDescription>
+        <value>The requested action is unknown.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_DEFFERED_DATE_NOT_SET_IN_PAST</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Deffered date no in past date label</shortDescription>
+        <value>Deffered sending date couldn\&apos;t be set to a past date</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_INVALID_CAMPAIGN</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error message for invalid campaign</shortDescription>
+        <value>This is not a valid campaign. Please choose another one.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_MISSING_MESSAGE</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Misssing message label</shortDescription>
+        <value>Message is missing</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_MISSING_MOBILE_PHONE</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Misssing mobile number label</shortDescription>
+        <value>Mobile number is missing</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_NO_RECORDS_SELECTED</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error when no contact or lead provided</shortDescription>
+        <value>No record selected. You must at least select one lead or contact.</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_SENDING_DATE_MESSAGE</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Misssing sending date label</shortDescription>
+        <value>Sending date is missing</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_SMS_FAILED_TO_BE_SENT</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>SMS failed to be sent label</shortDescription>
+        <value>SMS failed to be sent</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_UNKNOWN_ERROR</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Unknown error label</shortDescription>
+        <value>Unknown error. Please contact your administrator</value>
+    </labels>
+    <labels>
+        <fullName>Error_Code_132</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>ERROR CODE 132</shortDescription>
+        <value>Campaign sent</value>
+    </labels>
+    <labels>
+        <fullName>Error_Code_133</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>ERROR CODE 133</shortDescription>
+        <value>The unique number of frame is already used.</value>
+    </labels>
+    <labels>
+        <fullName>HELPTEXT_ADDITIONAL_MOBILE_NUMBER_FIELD</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Additional mobile number help text</shortDescription>
+        <value>Sent additionnal recipient separated by a comma</value>
+    </labels>
+    <labels>
+        <fullName>HELPTEXT_DEFFERED_SENDING_DATE_FIELD</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Help text mobile numbers with international country code</shortDescription>
+        <value>Date time of SMS sending</value>
+    </labels>
+    <labels>
+        <fullName>HELPTEXT_DEFFERED_SENDING_FIELD</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Deffered sending checkbox help text</shortDescription>
+        <value>Schedule your SMS sending in the future</value>
+    </labels>
+    <labels>
+        <fullName>HELPTEXT_INTERNATIONAL_COUNTRY_CODY</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Help text mobile numbers with international country prefix</shortDescription>
+        <value>Mobile numbers must be provided with international country prefix</value>
+    </labels>
+    <labels>
+        <fullName>HELPTEXT_MESSAGE_FIELD</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>SMS message field help text</shortDescription>
+        <value>SMS content</value>
+    </labels>
+    <labels>
+        <fullName>HELPTEXT_MOBILE_PHONE_FIELD</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Mobile phone field help text</shortDescription>
+        <value>Mobile phone field to pick</value>
+    </labels>
+    <labels>
+        <fullName>HELPTEXT_RELATED_OBJECT_FIELD</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Related object field help text</shortDescription>
+        <value>Object on witch workflow is applied (Contact or Lead)</value>
+    </labels>
+    <labels>
+        <fullName>HELPTEXT_SENDER_NAME_FIELD</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Sender name field help text</shortDescription>
+        <value>Sender of the message. 3-11 alphanumeric characters (a-zA-Z).</value>
+    </labels>
+    <labels>
+        <fullName>HELPTEXT_TASK_COMMENT_FIELD</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Task comment field help text</shortDescription>
+        <value>Auto-generated by the system. Must be copied in workflow comment field</value>
+    </labels>
+    <labels>
+        <fullName>HELPTEXT_TRANSACTIONAL_MARKETING_FIELD</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Help text transactional marketing radiobox fiedl</shortDescription>
+        <value>When you send a SMS , you must specify if it is for marketing or transactional purpose (alert, info, reminder, step confirmation, etc...)</value>
+    </labels>
+    <labels>
+        <fullName>INFO_CONTACT_RECORDS</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Contact records label</shortDescription>
+        <value>Contact records:</value>
+    </labels>
+    <labels>
+        <fullName>INFO_DYNAMIC_TEMPLATE_1ST_PERSON_PREVIEW</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Here is a SMS preview with 1st valid recipient:</shortDescription>
+        <value>Here is a SMS preview with 1st valid recipient:</value>
+    </labels>
+    <labels>
+        <fullName>INFO_DYNAMIC_TEMPLATE_USED</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Info used when a dynamic template is used for bulk leads, contacts, campaign</shortDescription>
+        <value>A dynamic template is used. Please check preview output before sending your SMS.</value>
+    </labels>
+    <labels>
+        <fullName>INFO_ESTIMATING_PLEASE_WAIT</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Estimating please wait label</shortDescription>
+        <value>Estimating sending SMS cost. Please wait...</value>
+    </labels>
+    <labels>
+        <fullName>INFO_LEAD_RECORDS</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Lead records label</shortDescription>
+        <value>Lead records:</value>
+    </labels>
+    <labels>
+        <fullName>INFO_PHONE_NOT_FILLED_FOR_CONTACT</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Phone not filled for contact label</shortDescription>
+        <value>Mobile phone is not filled for this contact.</value>
+    </labels>
+    <labels>
+        <fullName>INFO_PHONE_NOT_FILLED_FOR_LEAD</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Phone not filled for lead label</shortDescription>
+        <value>Mobile phone is not filled for this lead.</value>
+    </labels>
+    <labels>
+        <fullName>INFO_PLEASE_WAIT</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Please wait label</shortDescription>
+        <value>Please wait...</value>
+    </labels>
+    <labels>
+        <fullName>INFO_SENDING_SMS</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Sending SMS label</shortDescription>
+        <value>Sending SMS...</value>
+    </labels>
+    <labels>
+        <fullName>INFO_SIMULATION_MODE</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Simulation mode label</shortDescription>
+        <value>Your are currently in simulation mode. To send real SMS, please go to Octopush Settings tab and check Real SMS Sending.</value>
+    </labels>
+    <labels>
+        <fullName>INFO_SMS_IN_FAILURE</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>SMS in failure label</shortDescription>
+        <value>SMS in failure:</value>
+    </labels>
+    <labels>
+        <fullName>INFO_SMS_SUCCESS</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>SMS success label</shortDescription>
+        <value>SMS success:</value>
+    </labels>
+    <labels>
+        <fullName>INFO_TOTAL_SENDING_COST</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Total sending cost label:</shortDescription>
+        <value>Total sending cost:</value>
+    </labels>
+    <labels>
+        <fullName>INFO_TOTAL_SMS_SENT</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Total SMS sent label</shortDescription>
+        <value>Total SMS sent:</value>
+    </labels>
+    <labels>
+        <fullName>Invalid_destination_address</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Invalid destination address</shortDescription>
+        <value>Invalid destination address</value>
+    </labels>
+    <labels>
+        <fullName>Not_allowed</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Not allowed</shortDescription>
+        <value>Not allowed</value>
+    </labels>
+    <labels>
+        <fullName>Not_delivered</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Not delivered</shortDescription>
+        <value>Not delivered</value>
+    </labels>
+    <labels>
+        <fullName>Out_of_date</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Out of date</shortDescription>
+        <value>Out of date</value>
+    </labels>
+    <labels>
+        <fullName>Replies_tooltip</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Replies tooltip</shortDescription>
+        <value>Allow your receipients to send you replies. Using this feature without coordinating with Octopush can badly affect your campaign.</value>
+    </labels>
+    <labels>
+        <fullName>SEND_SMS_SUBTITLE</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Send SMS subtitle</shortDescription>
+        <value>Send sms campaigns or simple sms to your contacts, leads and more..</value>
+    </labels>
+    <labels>
+        <fullName>SEND_SMS_TITLE</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Send SMS title</shortDescription>
+        <value>Send SMS</value>
+    </labels>
+    <labels>
+        <fullName>TECH_SEND_PART_SPLITTED_NB</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Technical field to define send part sets size. Do not translate</shortDescription>
+        <value>400</value>
+    </labels>
+    <labels>
+        <fullName>TECH_SEND_PART_THRESHOLD</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Technical field to set send part threshold. Do not translate</shortDescription>
+        <value>400</value>
+    </labels>
+    <labels>
+        <fullName>Undefined</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Undefined</shortDescription>
+        <value>Undefined</value>
+    </labels>
+    <labels>
+        <fullName>Unknown_delivery</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Unknown delivery</shortDescription>
+        <value>Unknown delivery</value>
+    </labels>
+    <labels>
+        <fullName>Unsubscribed_number</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Unsubscribed number</shortDescription>
+        <value>Mobile phone was reduced due to unsubscribe list</value>
+    </labels>
+    <labels>
+        <fullName>Unsubscribed_numbers</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Unsubscribed numbers</shortDescription>
+        <value>Some numbers will be reduced due to unsubscribe list</value>
+    </labels>
+    <labels>
+        <fullName>WARNING_FIELD_NOT_MERGEABLE</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Fields not mergeable label</shortDescription>
+        <value>Some fields could not be merged. Please check your sms template...</value>
+    </labels>
+    <labels>
+        <fullName>WARNING_MISSING_MOBILE_FOR_SOME_RECORDS</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Warning for a list of person with some of them with no mobile</shortDescription>
+        <value>Some records have missing mobile phone. SMS will be sent only for records with a mobile phone provided.</value>
+    </labels>
+    <labels>
+        <fullName>WARNING_MISSING_OCTOPUSH_SETTINGS</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Warning for missing Octopush Settings</shortDescription>
+        <value>You must set Octopush settings first to use SMS sending feature. Please contact your administrators.</value>
+    </labels>
+    <labels>
+        <fullName>WARNING_SOME_SMS_COULD_NOT_BE_SENT</fullName>
+        <categories>Octopush</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Some SMS could not have been sent label</shortDescription>
+        <value>Some SMS could not have been sent</value>
+    </labels>
+    <labels>
+        <fullName>With_Replies</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>With Replies</shortDescription>
+        <value>2 ways SMS (replies)</value>
+    </labels>
+    <labels>
+        <fullName>site_url</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>site url</shortDescription>
+        <value>Force.com site url</value>
+    </labels>
+</CustomLabels>

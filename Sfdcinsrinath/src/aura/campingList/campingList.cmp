@@ -1,0 +1,11 @@
+<aura:component >
+    
+   <aura:attribute name="message" type="String"/>
+   <p>Hello! [ message goes here, soon ]</p>
+ 
+  <ol>
+    <li>Bug Spray</li>
+    <li>Bear Repellant</li>
+    <li>Goat Food</li>
+  </ol>
+</aura:component>

@@ -1,0 +1,23 @@
+<apex:page controller="sf4twitter.TwitterStartPageController" showHeader="{!AND(showHeader, NOT(consoleDetector.inConsole))}"
+    title="{!$Label.sf4twitter__twitter_start_page_title}" tabStyle="Salesforce_For_Twitter__tab">
+
+<apex:includeScript value="{!URLFOR($Resource.sf4twitter__jQueryLibrary)}" />
+
+	<apex:stylesheet value="{!URLFOR($Resource.sf4twitter__sfsocial, 'resources/style.css')}" />
+
+	<apex:sectionHeader title="{!HTMLENCODE($Label.sf4twitter__splashpage_title)}" />
+
+	<apex:outputPanel rendered="{!showSetupWarning}" layout="block" styleClass="message warningM3" >
+		<apex:image value="/img/msg_icons/warning24.png" style="padding: 0px 5px; float: left;" />
+		<apex:outputText escape="false" value="{!SUBSTITUTE( $Label.sf4twitter__setup_warning_message, '{0}', $Page.sf4twitter__SocialSetup )}" ></apex:outputText>
+	</apex:outputPanel>
+
+ 	<c:TwitterSimpleOutboundTweet />
+ 	
+	<apex:outputPanel layout="block" styleClass="setupNotice" >
+		<apex:image value="{!URLFOR($Resource.sf4twitter__sfsocial, 'resources/icons/Conversation_Icon.gif')}" width="18px" />
+		<c:SocialOutputLink linkValue="{!$Label.sf4twitter__twitter_get_tweets}" linkURL="{!$Page.sf4twitter__TwitterSearchInterface}"></c:SocialOutputLink>
+	</apex:outputPanel>
+
+
+</apex:page>

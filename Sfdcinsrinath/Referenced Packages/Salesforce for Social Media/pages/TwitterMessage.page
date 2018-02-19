@@ -1,0 +1,8 @@
+<apex:page tabStyle="sf4twitter__Twitter_Conversation__c" title="{!$Label.sf4twitter__send_a_tweet}" showHeader="false" sidebar="false" standardStyleSheets="true">
+	<head>
+		<title>{!$Label.SEND_TWEET_TITLE}</title>
+	</head>
+	<body>
+    	<c:TwitterOutboundTweets /> 
+	</body>
+</apex:page>

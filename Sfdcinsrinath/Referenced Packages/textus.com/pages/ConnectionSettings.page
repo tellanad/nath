@@ -1,0 +1,83 @@
+<apex:page controller="tubl.UserSettingsController"
+           title="TextUs.Biz Connection Settings"
+           setup="false"
+           sidebar="true"
+           showHeader="true"
+           standardStylesheets="true"
+           tabStyle="TextUsBizSettings__tab">
+    <head>
+        <script type="text/javascript">
+            function deleteSettingsInstance() {
+                if (confirm('Are you sure you want to delete TextUs connection for {!JSENCODE(settingUser.FirstName)} {!JSENCODE(settingUser.LastName)}?')) {
+                    deleteInstance();
+                }
+            }
+        </script>
+    </head>
+    <apex:form id="management_form">
+        <apex:pageMessages />
+
+        <apex:actionFunction action="{!edit}"
+                             name="edit"
+                             reRender="management_form"
+                             rendered="{!settingsAccessible}"/>
+        <apex:actionFunction action="{!save}"
+                             name="save"
+                             reRender="management_form"
+                             rendered="{!settingsAccessible}"/>
+        <apex:actionFunction action="{!cancel}"
+                             name="cancel"
+                             reRender="management_form"/>
+        <apex:actionFunction action="{!deleteInstance}"
+                             name="deleteInstance"
+                             reRender="management_form"
+                             rendered="{!settingsDeleteable}"/>
+        <apex:actionFunction action="{!createInstance}"
+                             name="createInstance"
+                             reRender="management_form"
+                             rendered="{!settingsCreatable}"/>
+
+        <apex:sectionHeader title="Configure TextUs.Biz Connection Parameters"
+                            subtitle="Settings for {!settingUser.FirstName} {!settingUser.LastName}"/>
+        <apex:pageBlock title="TextUs.Biz Connection settings"
+                        id="connection_settings"
+                        mode="{!IF(inEditMode,'edit', 'maindetail')}">
+            <apex:pageBlockButtons location="top">
+                <apex:commandButton value="Edit"
+                                    action="{!edit}"
+                                    rendered="{!!inEditMode && instanceExists && settingsEditable}"></apex:commandButton>
+                <apex:commandButton value="Save"
+                                    action="{!save}"
+                                    rendered="{!inEditMode && settingsCreatable}"></apex:commandButton>
+                <apex:commandButton value="Cancel"
+                                    action="{!cancel}"
+                                    rendered="{!inEditMode || ($CurrentPage.parameters.Id != null && !settingsEditable)}"></apex:commandButton>
+                <apex:commandButton value="Delete"
+                                    onClick="deleteSettingsInstance(); return false;"
+                                    rendered="{!!inEditMode && instanceExists && settingsDeleteable}"></apex:commandButton>
+                <apex:commandButton value="New"
+                                    action="{!createInstance}"
+                                    rendered="{!!inEditMode && !instanceExists && settingsCreatable}"></apex:commandButton>
+            </apex:pageBlockButtons>
+            <apex:outputPanel id="general-view-panel"
+                              rendered="{!!inEditMode && instanceExists && settingsAccessible}">
+                <apex:pageBlockSection title="Configure connection paramters"
+                                       collapsible="false"
+                                       columns="1">
+                    <apex:outputField value="{!connectionSettings.tubl__TextUsBizUsername__c}"></apex:outputField>
+                    <apex:outputText label="{!$ObjectType.tubl__TextUsBiz_ConnectionSettings__c.Fields.tubl__TextUsBiz_APIKey__c.Label}"
+                                     value="**************"></apex:outputText>
+                </apex:pageBlockSection>
+            </apex:outputPanel>
+            <apex:outputPanel id="general-edit-panel"
+                              rendered="{!inEditMode && settingsCreatable}">
+                <apex:pageBlockSection title="Configure connection parameters"
+                                       collapsible="false"
+                                       columns="1">
+                    <apex:inputField value="{!connectionSettings.tubl__TextUsBizUsername__c}"></apex:inputField>
+                    <apex:inputField value="{!connectionSettings.tubl__TextUsBiz_APIKey__c}"></apex:inputField>
+                </apex:pageBlockSection>
+            </apex:outputPanel>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

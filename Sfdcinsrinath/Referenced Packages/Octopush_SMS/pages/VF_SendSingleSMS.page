@@ -1,0 +1,108 @@
+<apex:page controller="OctoSMS.VF_SendSingleSMS_CTRL" tabStyle="SMS_Send__tab" id="p"> 
+<apex:sectionHeader title="{!$Label.octosms__send_sms_subtitle}" subtitle="{!$Label.octosms__send_sms_title}"/>                    
+<apex:pageMessages id="msgBox"/>
+
+<apex:form id="f">
+    <apex:actionFunction name="showSendingMsg" action="{!showSendingMsg}" rerender="msgBox" />
+    <apex:actionFunction name="showSendingResultMsg" action="{!showSendingResultMsg}" rerender="msgBox" />
+
+    <apex:pageBlock id="pb">
+        <apex:actionStatus id="as" onstart="showSendingMsg();"/>
+        <apex:pageBlockButtons >
+            <apex:commandButton action="{!sendSMS}" value="Send" status="as" rerender="msgBox" oncomplete="showSendingResultMsg();" disabled="{!disableSendButton}" rendered="{!$ObjectType.OctoSMS__SMS_History__c.Createable}"/>
+            <apex:commandButton action="{!doCancel}" value="Cancel" immediate="true" />            
+        </apex:pageBlockButtons>
+       
+        <apex:pageBlockSection id="pbs" title="Send Message" columns="2" collapsible="false" rendered="{!$ObjectType.OctoSMS__SMS_History__c.Createable}">              
+                                 
+                 <apex:pageblockSectionItem rendered="{! isLeadOrContact}">                    
+                    <apex:outputLabel value="Recipient Name" />
+                    <apex:outputLink value="/{!originID}" >{! relatedRecordName}</apex:outputLink>
+                 </apex:pageblockSectionItem>
+                 <apex:pageblockSectionItem rendered="{! !isLeadOrContact}"/>                    
+                 <apex:pageBlockSectionItem helpText="{!$Label.octosms__replies_tooltip}">
+                     <apex:outputLabel value="{!$Label.octosms__with_replies}" />
+                     <apex:inputField value="{!os.OctoSMS__WithReplies__c}"/>
+                 </apex:pageblockSectionItem>                
+                 
+                <apex:pageblockSectionItem helpText="{!$Label.octosms__helptext_international_country_cody}">                    
+                    <apex:outputLabel value="Mobile Number" />
+                    <apex:outputPanel >
+                        <div class = "requiredInput">
+                            <div class = "requiredBlock"></div>
+                            <apex:inputText id="ifMobile" value="{!aSMS.OctoSMS__Mobile_Number__c}" />                                       
+                        </div>
+                    </apex:outputPanel>
+                 </apex:pageblockSectionItem>
+                
+                <apex:pageblockSectionItem id="pbsiIcbDeffered" helpText="{!$Label.octosms__helptext_deffered_sending_field}">                    
+                    <apex:outputLabel value="Deffered Sending" />
+                    <apex:inputCheckbox id="icbDeffered" label="Deffered Sending" value="{!isDefferedSending}" onchange="activateDefferedSending()" rendered="{!$ObjectType.OctoSMS__SMS_History__c.Createable && $ObjectType.OctoSMS__SMS_History__c.fields.OctoSMS__Sending_Date__c.Accessible}"/>
+                 </apex:pageblockSectionItem> 
+                
+                 <apex:pageblockSectionItem helpText="{!$Label.octosms__helptext_international_country_cody}">
+                    <apex:outputLabel value="Additional Mobile Phone"/>                        
+                    <apex:inputText value="{!additionalMobile}" />        
+                </apex:pageblockSectionItem>
+                
+                <apex:pageblockSectionItem id="pbsiIfSendingDate" helpText="{!$Label.octosms__helptext_deffered_sending_date_field}">
+                    <apex:outputLabel value="Deffered Sending Date" /> 
+                    <apex:outputPanel >
+                        <div class = "requiredInput">
+                            <div class = "requiredBlock"></div>
+                             <apex:inputField id="ifSendingDate" value="{!aSMS.OctoSMS__Sending_Date__c}" />
+                        </div>
+                    </apex:outputPanel>    
+                </apex:pageblockSectionItem>
+
+                 <apex:inputField id="ifTemplate" value="{!aSMS.OctoSMS__SMS_Template__c}" >                    
+                    <apex:actionSupport event="onchange" action="{!fillTemplateContent}" immediate="false" rerender="msgBox, ifMessage, ifSenderName" oncomplete="reComputeCharRemaining()"/>
+                </apex:inputField>
+                 <apex:inputField id="ifSenderName" value="{!aSMS.OctoSMS__Sender_Name__c}" required="true"/>   
+                
+                <apex:pageblockSectionItem id="pbsiMessage" helpText="{!$Label.octosms__helptext_message_field}">                    
+                    <apex:outputLabel value="Message" /> 
+                    <apex:outputPanel >
+                        <div class = "requiredInput">
+                            <div class = "requiredBlock"></div>
+                            <apex:inputField id="ifMessage" value="{!aSMS.OctoSMS__SMS_Message__c}" style="width:170px; height:80px;" onkeyup="reComputeCharRemaining();"/>  
+                        </div>
+                        <div id="textarea_feedback"></div>   
+                    </apex:outputPanel>
+                     
+                </apex:pageblockSectionItem>
+                
+                <apex:pageblockSectionItem helpText="{!$Label.octosms__helptext_transactional_marketing_field}">                   
+                    <apex:outputLabel value="SMS Purpose" />
+                    <apex:outputPanel >
+                        <apex:selectRadio value="{!aSMS.OctoSMS__SMS_Purpose__c}" required="true">
+                            <apex:selectOptions value="{!items}"/>
+                        </apex:selectRadio>
+                    </apex:outputPanel>
+                 </apex:pageblockSectionItem>
+                 
+        </apex:pageBlockSection>
+        
+        <apex:pageBlockSection title="Send Message" columns="1" collapsible="false" rendered="{! !$ObjectType.SMS_History__c.Createable }">
+        	<p>Sorry, but you cannot see this section properly because you do not have access (Read - Create) to the SMS History object</p>
+        	<p>Please contact your administrator.</p>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+</apex:form>
+<script>
+    var text_max = 459;
+    var smsCount = 1;
+    document.getElementById('textarea_feedback').innerHTML = text_max + ' characters remaining<br>'+smsCount+' SMS';
+    document.getElementById('p:f:pb:pbs:pbsiIfSendingDate:ifSendingDate').disabled = true;
+    function reComputeCharRemaining() {
+        var text_length = document.getElementById('p:f:pb:pbs:pbsiMessage:ifMessage').value.length;
+        var text_remaining = text_max - text_length;
+        if(text_remaining < 160) smsCount = 3; else if (text_remaining < 306) smsCount = 2; else smsCount = 1; 
+        document.getElementById('textarea_feedback').innerHTML = text_remaining + ' characters remaining<br>'+smsCount+' SMS';
+    }
+    function activateDefferedSending() {
+        document.getElementById('p:f:pb:pbs:pbsiIfSendingDate:ifSendingDate').disabled = ! document.getElementById('p:f:pb:pbs:pbsiIcbDeffered:icbDeffered').checked;
+        document.getElementById('p:f:pb:pbs:pbsiIfSendingDate:ifSendingDate').value = '';     
+    }
+</script>
+</apex:page>

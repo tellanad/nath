@@ -1,0 +1,57 @@
+<apex:page standardController="sftplib__Data_Transformation__c" extensions="sftplib.Data_Transformation_Controller" title="Data Transformation">
+   <apex:sectionHeader title="Data Transformation" subtitle="Mapping"/> 
+    <apex:form id="mainform">
+        <apex:pagemessages />
+        <apex:pageblock title="Define Transformation Mappings">
+           <apex:pageblockSection columns="1">
+               <apex:pageBlockSectionItem >
+                   <apex:outputLabel title="Select Transformation Object" value="Select Transformation Object"></apex:outputLabel>
+                   <apex:actionRegion >
+                    <apex:selectList value="{!selectedObject}" multiselect="false" size="1" title="Select Object">
+                        <apex:selectOptions value="{!listOfObjects}"/>
+                        <apex:actionSupport event="onchange" action="{!getTransformationMapping}" rerender="mainform"/>
+                    </apex:selectList>
+                  </apex:actionRegion>
+               </apex:pageBlockSectionItem>
+            </apex:pageblockSection>     
+            <apex:pageblockSection columns="3">  
+                    <apex:inputField value="{!dataTransformationObj.sftplib__Is_Active__c}"/>                                 
+                    <apex:inputField required="false" value="{!dataTransformationObj.sftplib__Transformation_Name__c}"/>                  
+                    <apex:inputField value="{!dataTransformationObj.sftplib__Description__c}"/>
+            </apex:pageblockSection>             
+            <apex:pageblockTable value="{!wrapperList}" var="wrper" width="100%" id="transformationTable">
+                <apex:column headerValue="Select">
+                    <apex:inputCheckbox value="{!wrper.flag}"/>
+                </apex:column>
+                <apex:column headerValue="Salesforce field">
+                 <apex:actionRegion >
+                    <apex:selectList value="{!wrper.selectedField}" multiselect="false" onChange="getFieldValues()" size="1">
+                        <apex:selectOptions value="{!wrper.fieldsOfSelectedObjectList}"/>                        
+                    </apex:selectList>
+                  </apex:actionRegion>
+                </apex:column>
+                <apex:column headerValue="Source Value">
+                    <apex:inputText value="{!wrper.sourceValue}"/>
+                </apex:column>
+                <apex:column headerValue="Transformed Value">
+                    <apex:selectList value="{!wrper.selectedTransformedValue}" size="1" rendered="{!wrper.selectedFieldType == 'Picklist'}">
+                        <apex:selectOptions value="{!wrper.lstOfTransformedValues}"/>
+                    </apex:selectList>
+                    <apex:inputText value="{!wrper.selectedTransformedValue}" rendered="{!wrper.selectedFieldType == 'String'}"/>
+                </apex:column>
+                <apex:column headerValue="Comments">
+                    <apex:inputTextArea value="{!wrper.comments}"/>
+                </apex:column>
+            </apex:pageblockTable>
+            <apex:pageblockButtons location="bottom">
+                <apex:commandButton action="{!saveTransformation}" value="Save" disabled="{!disableSave}"/>
+                <apex:commandButton action="{!cancelTransformation}" immediate="true" value="Cancel"/>
+            </apex:pageblockButtons>
+            <br/><br/>
+            <apex:commandLink value="Add New Mapping" action="{!AddNewRow}" rerender="transformationTable, mainform"/><br/><br/>
+            <apex:commandLink value="Delete Selected Mappings" action="{!deleteSelectedRows}" rerender="transformationTable"/>
+        </apex:pageblock>
+        <apex:actionFunction name="getFieldValues" action="{!changeFieldType}" rerender="transformationTable">    
+        </apex:actionFunction>
+    </apex:form>    
+</apex:page>

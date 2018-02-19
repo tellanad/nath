@@ -1,0 +1,135 @@
+<apex:page controller="sftplib.ImportIBMultiobjectController" showHeader="false" sidebar="false" applyHtmlTag="false" standardStylesheets="false" applyBodyTag="false" docType="html-5.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.lightningdesignsystem.com/assets/styles/slds.css"/>
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+        <head>
+            <meta charset="utf-8" />
+            <meta http-equiv="x-ua-compatible" content="ie=edge" />
+            <title>Import Mappings</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <!-- Import the Design System style sheet -->
+            <apex:slds />
+        </head>
+        <BODY>
+        <div class="slds-scope">
+            <apex:includeScript value="{!$Resource.sftplib__jquery_min}"/>
+            <apex:form >
+                <style>
+                
+                    .msgIcon {
+                        display: none!important
+                    }
+                    .customMessage * {
+                        color: #fff!important
+                    }
+                    .customMessage {
+                        margin: 5px 0!important;
+                        max-width: 1280px;
+                        opacity: 1!important;
+                        width: 100%;
+                        font-size: 12px;
+                        border: 0px;
+                        padding-left: 10px;
+                    }
+                    .message {
+                        opacity: .1
+                    }                
+                
+                    .bPageBlock{
+                        height:282px!important;
+                    }
+                    .pbButton{
+                        padding-left: 22px !important;
+                    }
+                    .pbButtonb{
+                        padding-left: 24px !important;
+                    }
+                    .messageText{
+                        font-size:13px!important;
+                    }
+                </style>
+                <script language="JavaScript" type="text/javascript">
+                    $(document).ready(function(){
+                       overridePageMessages();    
+                    });
+                       
+                    function overridePageMessages(){    
+                        var textureEffect = '';
+                        //Uncomment below line for texture effect on page messages
+                        //textureEffect = 'slds-theme--alert-texture';
+                                    
+                        $('.warningM3').addClass('slds-notify slds-notify--toast slds-theme--warning customMessage '+textureEffect);          
+                        $('.confirmM3').addClass('slds-notify slds-notify--alert slds-theme--success  customMessage '+textureEffect);    
+                        $('.errorM3').addClass('slds-notify slds-notify--alert slds-theme--error customMessage '+textureEffect);                  
+                        $('.infoM3').addClass('slds-notify slds-notify--toast customMessage '+textureEffect);    
+                                        
+                        $('.errorM3').removeClass('errorM3'); 
+                        $('.confirmM3').removeClass('confirmM3'); 
+                        $('.infoM3').removeClass('infoM3');   
+                        $('.warningM3').removeClass('warningM3');  
+                    }
+                    var j$ = jQuery.noConflict();
+                </script>
+                <div class="slds-page-header" role="banner"> 
+                    <p class="slds-page-header__title slds-truncate slds-align-middle">Select .importbuddy file</p>
+                </div>
+                <apex:pageblock rendered="{!show_main}">
+                    <apex:pageMessages />
+                        <apex:pageBlockSection columns="1">
+                            <div class="slds-form-element">
+                                <div class="slds-form-element__label" for="text-input-id-1">
+                                    Name
+                                </div>
+                                <div class="slds-form-element__control">
+                                  <apex:inputText value="{!fileName}" id="Name" styleClass="slds-input"/>
+                                </div>
+                            </div>
+                            <div class="slds-form-element__control">
+                                <div class="slds-form-element__label" for="text-input-id-1">
+                                        Select Parent Object: 
+                                    </div>
+                                <apex:selectList id="selobj" size="1" value="{!objectval}" styleClass="slds-select" >
+                                    <apex:selectOptions value="{!AllTables}"></apex:selectOptions>
+                                </apex:selectList>
+                            </div>
+                            <div class="slds-form-element__control">
+                                <div class="slds-form-element__label" for="text-input-id-1">
+                                        Select Child Object: 
+                                    </div>
+                                <apex:selectList id="selchildobj" size="1" value="{!childobjectval}" styleClass="slds-select" >
+                                    <apex:selectOptions value="{!AllTables}"></apex:selectOptions>
+                                </apex:selectList>
+                            </div>
+                            <div class="slds-form-element__control">
+                                <div class="slds-form-element__label" for="text-input-id-1">
+                                    Description
+                                </div>
+                            </div>
+                            <apex:inputTextarea id="desc" value="{!Descrp}" styleClass="slds-input"/>
+                            <apex:outputLabel value="Select File: " for="file"/>
+                            <apex:actionRegion >
+                                <apex:inputFile value="{!csvFileBody}" filename="{!csvAsString}" accept=".importbuddy" contentType=".importbuddy" id="file"/>
+                            </apex:actionRegion>
+
+                     
+                        </apex:pageblockSection>
+                        <div align="center">
+                        <apex:actionRegion >
+                            <apex:commandButton value="Save" action="{!SaveClick}" onclick="overridePageMessages();" styleClass="slds-button slds-button_brand" />
+                            <apex:commandButton value="Cancel" action="{!cancel}" styleClass="slds-button slds-button_brand" immediate="true"/>
+                        </apex:actionRegion>
+                     </div>
+                </apex:pageblock>
+                <apex:pageBlock rendered="{!show_ok}" >
+                    <apex:actionFunction action="{!cancel}" name="doCancel" immediate="true"/>
+                    <script>
+                        window.onload=function(){        
+                            doCancel();
+                        };
+                    </script>
+                </apex:pageBlock>
+            </apex:form>
+         </div>
+        </BODY>
+    </html>
+</apex:page>

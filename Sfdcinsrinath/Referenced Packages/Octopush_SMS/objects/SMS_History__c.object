@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Answerdate__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Date when answer was performed to sms (Answer sms)</inlineHelpText>
+        <label>Answer date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Deffered_Sending__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Deffered sending checkbox help text</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Schedule your SMS sending in the future</inlineHelpText>
+        <label>Deffered Sending</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Deliverydate__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Date when sms was delivered</inlineHelpText>
+        <label>Delivery date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Error_Reason__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Error reason field help text</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Error reason if SMS failed to be sent</inlineHelpText>
+        <label>Error reason</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Mobile_Number__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Mobile number field help text</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Mobile numbers must be provided with international country code</inlineHelpText>
+        <label>Mobile Number</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NormalNumberFormat__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Number where sms was sent</inlineHelpText>
+        <label>Normal Number</label>
+        <length>255</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Octopush_id__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Message id from octopush</inlineHelpText>
+        <label>Octopush id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Receiver_Type__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Receiver Type help text</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Can be lead, contact, campaign member or anonymous</inlineHelpText>
+        <label>Receiver Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Campaign member</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Contact</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Lead</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Anonymous</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Receptiondate__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Date when sms received (Inbound sms)</inlineHelpText>
+        <label>Reception date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Related_contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Contact who received an SMS</inlineHelpText>
+        <label>Related contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>SMS History</relationshipLabel>
+        <relationshipName>SMS_History</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Related_lead__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Lead who received an SMS</inlineHelpText>
+        <label>Related lead</label>
+        <referenceTo>Lead</referenceTo>
+        <relationshipLabel>SMS History</relationshipLabel>
+        <relationshipName>SMS_History</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Reportstatistic__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Lookup to related sms statistic</inlineHelpText>
+        <label>Report statistic</label>
+        <referenceTo>Reportstatistic__c</referenceTo>
+        <relationshipLabel>SMS History</relationshipLabel>
+        <relationshipName>SMS_History</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>SMS_History_Parent__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Lokup to parent history object (only on sms answer)</inlineHelpText>
+        <label>SMS History Parent</label>
+        <referenceTo>SMS_History__c</referenceTo>
+        <relationshipLabel>SMS History</relationshipLabel>
+        <relationshipName>SMS_History_Child</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>SMS_Message__c</fullName>
+        <deprecated>false</deprecated>
+        <description>SMS Message help text</description>
+        <externalId>false</externalId>
+        <inlineHelpText>SMS content</inlineHelpText>
+        <label>SMS Message</label>
+        <length>459</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>SMS_Purpose__c</fullName>
+        <defaultValue>&quot;Marketing&quot;</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Type of SMS. See Octopush documentation for more information</description>
+        <externalId>false</externalId>
+        <inlineHelpText>When you send an SMS , you must specify if your sending is to marketing purpose, or if it is only a transactional message (alert, info, reminder, step confirmation, etc...)</inlineHelpText>
+        <label>SMS Purpose</label>
+        <length>255</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SMS_Template__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>SMS Template help text</description>
+        <externalId>false</externalId>
+        <inlineHelpText>You can choose pre-built SMS message</inlineHelpText>
+        <label>SMS Template</label>
+        <referenceTo>SMS_Template__c</referenceTo>
+        <relationshipLabel>SMS History</relationshipLabel>
+        <relationshipName>SMS_History</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Sender_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Sender name help text</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Sender of the message. 3-11 alphanumeric characters (a-zA-Z).</inlineHelpText>
+        <label>Sender Name</label>
+        <length>11</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Sending_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Sending Date help text</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Date time of SMS sending</inlineHelpText>
+        <label>Sending Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Status help text</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Sent to SMS platform or in error</inlineHelpText>
+        <label>Status</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Transmitted to Octopush</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Error</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Delivered</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Not allowed</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Sms type (Inbound or Outbound)</inlineHelpText>
+        <label>Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Inbound</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Outbound</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>SMS History</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Error_Reason__c</columns>
+        <columns>Mobile_Number__c</columns>
+        <columns>Receiver_Type__c</columns>
+        <columns>SMS_Message__c</columns>
+        <columns>SMS_Template__c</columns>
+        <columns>Status__c</columns>
+        <columns>Sending_Date__c</columns>
+        <columns>SMS_History_Parent__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>Inbound_sms</fullName>
+        <columns>NAME</columns>
+        <columns>Mobile_Number__c</columns>
+        <columns>Status__c</columns>
+        <columns>Deliverydate__c</columns>
+        <columns>SMS_History_Parent__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Type__c</field>
+            <operation>equals</operation>
+            <value>Inbound</value>
+        </filters>
+        <label>Inbound sms</label>
+    </listViews>
+    <listViews>
+        <fullName>Outbound_sms</fullName>
+        <columns>NAME</columns>
+        <columns>Mobile_Number__c</columns>
+        <columns>Status__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Type__c</field>
+            <operation>equals</operation>
+            <value>Outbound</value>
+        </filters>
+        <label>Outbound sms</label>
+    </listViews>
+    <nameField>
+        <displayFormat>{YYYY}{MM}-{0}</displayFormat>
+        <label>SMS History Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>SMS History</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

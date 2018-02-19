@@ -1,0 +1,14 @@
+<apex:page controller="sf4twitter.TwitterError" title="{!$Label.sf4twitter__twitter_error}">
+
+	<apex:pageBlock title="{!$Label.sf4twitter__twitter_error}">
+		{!$Label.sf4twitter__following_errors_ocurred}:<br/>
+		<ul>
+		<apex:repeat value="{!showMessages}" var="msg" id="theRepeat">
+			<li><apex:outputText value="{!msg}"></apex:outputText></li>
+		</apex:repeat> 
+		</ul>
+		<br/>{!$Label.Contact_System_Administrator}
+		<br /><apex:outputLink style="margin-top:20px;display:block" styleClass="returnLink" value="" rendered="{!NOT(retUrl == '')}">{!$Label.sf4twitter__twitter_return}</apex:outputLink>
+	</apex:pageBlock>
+
+</apex:page>

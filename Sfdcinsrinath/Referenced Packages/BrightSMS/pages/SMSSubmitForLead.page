@@ -1,0 +1,92 @@
+<apex:page id="SMSSubmitPage" standardcontroller="Lead" extensions="BG_SMS.SMSSubmitForLeadController">
+     <apex:form id="SMSSubmitForm">
+        <apex:pageblock id="smsSubmitPageBlock" mode="edit">
+                <apex:pageBlockButtons location="bottom">
+                    <apex:commandButton action="{!submitSMS}" status="mySaveStatus1" value="Send SMS" rerender="ResultsSection, Buttons"/>
+                    <apex:commandButton action="{!returnToLead}" status="returnToLead" value="Return To Lead" rerender="ResultsSection, Buttons"/>  
+                </apex:pageBlockButtons>
+            
+            <apex:pageBlockSection title="Send SMS Messages" id="smsSubmitBlockSec" columns="1" collapsible="true">
+
+                <apex:pageBlockSectionItem id="smsAccount" helpText="Please select an SMS account from the list.">
+                    <apex:outputLabel value="SMS Account" for="smsAccount" styleClass="labelCol"/>
+                                        <apex:outputPanel styleClass="requiredInput" layout="block">
+                                        <apex:outputPanel styleClass="requiredBlock" layout="block"/>
+                    <apex:selectList size="1" value="{!smsAccount}">
+                       <apex:selectoptions value="{!smsAccountList}"></apex:selectoptions>
+                       <apex:actionSupport event="onchange" rerender="list"/>
+                    </apex:selectlist> 
+                                        </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem id="mobileNumber" helpText="Mobile number must be numeric. UK format must contain 11 or 12 digits, e.g. 07752123456 or 447752123456; international format must contain between 10 and 15 digits.">
+                    <apex:outputLabel value="Mobile Number" for="mobileNumber" styleClass="labelCol"/>
+                                        <apex:outputPanel styleClass="requiredInput" layout="block">
+                                            <apex:outputPanel styleClass="requiredBlock" layout="block"/>
+                        <apex:outputText id="mobileNumber" value="{!mobileNumber}"  style="height:17px;width:150px"/>
+                                        </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                    
+                <apex:pageBlockSectionItem id="smsMessage" helpText="SMS message must be no more than 459 characters.">
+                    <apex:outputLabel value="SMS Message" for="smsMessage" styleClass="labelCol"/>
+                                            <apex:outputPanel styleClass="requiredInput" layout="block">
+                                            <apex:outputPanel styleClass="requiredBlock" layout="block"/>
+                        <apex:inputTextArea id="smsMessage" value="{!smsMessage}" style="height:50px;width:250px"/>
+                                        </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem id="rateCode" helpText="Select UK to send a message to a UK number or INT to send a message to an international number.">
+                    <apex:outputLabel value="Rate Code" styleClass="labelCol"/>
+                                        <apex:outputPanel styleClass="requiredInput" layout="block">
+                                            <apex:outputPanel styleClass="requiredBlock" layout="block"/>
+                        <apex:selectList value="{!rateCode}" size="1">
+                      <apex:selectOption itemLabel="UK (07) or (447)" itemValue="1" />
+                      <apex:selectOption itemLabel="INT (00)" itemValue="2" /> 
+                      <apex:actionSupport event="onchange" rerender="list"/>
+                        </apex:selectList> 
+                                        </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem id="senderid" helpText="Numeric Sender IDs must be no longer than 15 characters. Alphanumeric Sender IDs must be no longer than 11 characters and may contain a-z, A-Z, 0-9, - and _. Please note that recipients cannot reply to a Sender ID containing alpha characters">
+                    <apex:outputLabel value="Sender ID" for="senderid" styleClass="labelCol"/>
+                                        <apex:outputPanel styleClass="requiredInput" layout="block">
+                                            <apex:outputPanel styleClass="requiredBlock" layout="block"/>
+                        <apex:inputText id="senderid" maxlength="15" value="{!senderID}" style="height:17px;width:150px"/> 
+                                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+            
+          </apex:pageBlockSection>
+          <!--
+          <apex:pageBlockSection id="Buttons" columns="1" collapsible="true">                
+            <apex:pageBlockSectionItem id="smsSubmitButtons">
+                <apex:outputLabel value="" styleClass="labelCol"/>
+                            <apex:actionStatus id="mySaveStatus1">     
+                            
+                                <apex:facet name="stop">                 
+                                <apex:commandButton action="{!submitSMS}" status="mySaveStatus1" value="Send SMS" rerender="ResultsSection, Buttons"/> 
+                                <apex:commandButton action="{!returnToLead}" status="returnToLead" value="Return To Lead" rerender="ResultsSection, Buttons"/>           
+                                </apex:facet>
+                                
+                                
+                                            
+                            </apex:actionStatus>
+            </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            -->
+          
+                <apex:pageBlockSection title="SMS Send Overview" id="ResultsSection" columns="1" collapsible="{!NOT(ISNULL(smsResponse))}">
+                <apex:pageMessages />
+                <apex:pageBlockTable value="{!smsResponse}" var="smsres" rendered="{!NOT(ISNULL(smsResponse))}">
+                    <apex:column >
+                        <apex:facet name="header">Job ID/Status Code</apex:facet>
+                        <apex:outputText value="{!smsres.jobID}"/>
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">Status Text</apex:facet>
+                        <apex:outputText value="{!smsres.statusText}"/>
+                    </apex:column>  
+                </apex:pageBlockTable>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

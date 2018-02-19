@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>API_KEY__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <deprecated>false</deprecated>
+        <description>API KEY help text</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Octopush API KEY. Connect to your Octopush interface to get it.</inlineHelpText>
+        <label>API KEY</label>
+        <length>255</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Default_Sender_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Default Sender Name for a SMS. Ex: Company name</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Sender of the message. 3-11 alphanumeric characters (a-zA-Z).</inlineHelpText>
+        <label>Default Sender Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>History_Recording__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Keep track of each SMS sending on SMS HIstory custom object</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Record all SMS Sent in SMS History</inlineHelpText>
+        <label>History Recording</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Real_SMS_Sending__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Activation of real SMS sending. Keep unchecked if you want to test SMS senfing. Charges are applied only when this flag is checked.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Activate if you want to send real SMS. Charges are applied only if checked.</inlineHelpText>
+        <label>Real SMS Sending</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>SMS_Purpose__c</fullName>
+        <defaultValue>&quot;Marketing&quot;</defaultValue>
+        <deprecated>false</deprecated>
+        <description>SMS Purpose. Contact Octopush if you need more details</description>
+        <externalId>false</externalId>
+        <inlineHelpText>When you send an SMS , you must specify if your sending is to marketing purpose, or if it is only a transactional message (alert, info, reminder, step confirmation, etc...)</inlineHelpText>
+        <label>SMS Purpose</label>
+        <length>255</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Siteurl__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Force.com site url</inlineHelpText>
+        <label>Site url</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Transactional_SMS_Marketing_SMS__c</fullName>
+        <defaultValue>&quot;Marketing SMS&quot;</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Type of SMS. See Octopush documentation for more information</description>
+        <externalId>false</externalId>
+        <inlineHelpText>When you send an SMS , you must specify if your sending is to marketing purpose, or if it is only a transactional message (alert, info, reminder, step confirmation, etc...)</inlineHelpText>
+        <label>Transactional SMS / Marketing SMS</label>
+        <length>255</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>User_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <description>User Name help text</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Octopush user name</inlineHelpText>
+        <label>User Name</label>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Virtualnumber__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Virtual number</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>WithReplies__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Allow your receipients to send you replies. Using this feature without coordinating with Octopush can badly affect your campaign.</inlineHelpText>
+        <label>2 ways SMS (replies)</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Octopush Settings</label>
+    <visibility>Public</visibility>
+</CustomObject>

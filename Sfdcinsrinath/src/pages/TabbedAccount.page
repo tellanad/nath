@@ -1,0 +1,21 @@
+<apex:page standardController="Account" showHeader="false" >
+    <apex:tabPanel switchType="client" selectedTab="detailTab">
+        <apex:tab id="detailTab" label="Details" >
+            <apex:detail relatedList="false"/>
+        </apex:tab>
+        <apex:tab id="contactsTab" label="Contacts" >
+            <apex:relatedList subject="{!account}" list="Contacts"/>
+        </apex:tab>
+        <apex:tab id="casesTab" label="Cases" >
+            <apex:relatedList subject="{!account}" list="Cases"/>
+        </apex:tab>
+        <apex:tab id="opportunitiesTab" label="Opportunities" >
+            <apex:relatedList subject="{!account}" list="Opportunities"/>
+        </apex:tab>
+        <apex:tab id="openactivitiesTab" label="Open Activities" >
+            <apex:relatedList subject="{!account}" list="openActivities"/>
+        </apex:tab>
+        
+    </apex:tabPanel>
+
+</apex:page>

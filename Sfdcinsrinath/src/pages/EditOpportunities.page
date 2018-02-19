@@ -1,0 +1,35 @@
+<apex:page standardController="Opportunity"  recordSetVar="opportunities" tabStyle="Opportunity" showHeader="false" sidebar="True" >
+    <apex:form >
+        <apex:pageBlock title="Edit Opportunity">
+            <apex:pageMessages ></apex:pageMessages>
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Save" action="{!save}"/>
+                <apex:commandButton value="Cancel" action="{!cancel}"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockTable value="{!opportunities}" var="opp">
+                <apex:column value="{!opp.name}" />
+                <apex:column headerValue="Stage" >
+                   <apex:inputField value="{!opp.StageName}"/>
+                </apex:column>
+                <apex:column headerValue="Close Date" >
+                   <apex:inputField value="{!opp.CloseDate}"/>
+                </apex:column>
+            </apex:pageBlockTable>
+            <apex:panelGrid columns="5" cellpadding="5" cellspacing="5">
+            <apex:commandButton action="{!first}" value="|<"/>
+            <apex:commandButton rendered="{!HasPrevious}" action="{!previous}" value="<"/>
+            <apex:commandButton rendered="{!HasNext}" action="{!next}" value=">"/>
+            <apex:commandButton action="{!last}" value=">|"/>
+            <apex:panelGroup >
+            <apex:outputText value="Recors/Page"></apex:outputText>&nbsp;&nbsp;
+             <apex:selectList value="{!PageSize}" size="1">
+             <apex:selectOption itemvalue="10" itemlabel="10"></apex:selectOption>
+             <apex:selectOption itemvalue="15" itemlabel="15"></apex:selectOption>
+             <apex:selectOption itemvalue="20" itemlabel="20"></apex:selectOption>
+             </apex:selectList>&nbsp;&nbsp;        
+             <apex:commandButton action="{!NULL}" value="Update Page Size"/>  
+             </apex:panelGroup>  
+            </apex:panelGrid>            
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

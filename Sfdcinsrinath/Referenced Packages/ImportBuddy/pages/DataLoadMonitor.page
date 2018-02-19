@@ -1,0 +1,33 @@
+<apex:page tabStyle="ImportBuddy__tab" showHeader="false" sidebar="false" applyHtmlTag="false" standardStylesheets="false" applyBodyTag="false" docType="html-5.0"  >
+ 
+ <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+        <head>
+            <meta charset="utf-8" />
+            <meta http-equiv="x-ua-compatible" content="ie=edge" />
+            <title>ImportBuddy Status</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <!-- Import the Design System style sheet -->
+            <apex:slds />
+            <script type="text/javascript" >
+                var j$=jQuery.noConflict();
+                    j$(document).ready( function() {
+                        window.onbeforeunload = function(e) {              
+                              
+                        };                
+                    });
+             </script>
+  
+        </head>
+<body> 
+        <div class="slds-scope"> 
+   
+    <apex:pageMessages id="msg"/>
+    <apex:form >
+       <c:DataLOadJObMonitor id="jobLight" /> 
+       <br/>
+        <apex:commandButton action="/apex/sftplib__ImportBuddy"  value="Load New File" styleClass="slds-button slds-button_brand"/>
+    </apex:form>
+    </div>
+</body>
+</html>     
+</apex:page>

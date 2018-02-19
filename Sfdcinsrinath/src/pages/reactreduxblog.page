@@ -1,0 +1,24 @@
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false"  applyBodyTag="false" applyHtmlTag="false">
+<html>
+<head>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+</head>
+<body>
+    <!-- Remote Objects definition to set accessible sObjects and fields -->
+    <apex:remoteObjects >
+        <apex:remoteObjectModel name="Post__c" jsShorthand="Post" 
+            fields="Id,Name,Categories__c,Content__c">
+        </apex:remoteObjectModel>
+    </apex:remoteObjects>
+
+    <!-- reactjs -->
+    <div id="body" />
+    <!--Development: Use this for development and point to ngrok. Also update the ngrok's URL to match your localhost's URL-->
+    <!-- <script src="https://cca77cf6.ngrok.io/bundle.js"/> -->
+
+    <!-- Production: Use the below for production and point to final the static resource "reactreduxblog" (bundle.js) -->
+    <script src="{!URLFOR($Resource.reactreduxblog)}"/>
+   
+  </body>
+</html>
+</apex:page>

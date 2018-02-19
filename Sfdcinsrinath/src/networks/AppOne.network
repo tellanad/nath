@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Network xmlns="http://soap.sforce.com/2006/04/metadata">
+    <allowMembersToFlag>false</allowMembersToFlag>
+    <branding>
+        <primaryColor>#1797C0</primaryColor>
+        <primaryComplementColor>#FFFFFF</primaryComplementColor>
+        <quaternaryColor>#B1BAC1</quaternaryColor>
+        <quaternaryComplementColor>#222222</quaternaryComplementColor>
+        <secondaryColor>#51606E</secondaryColor>
+        <tertiaryColor>#DDE4E9</tertiaryColor>
+        <tertiaryComplementColor>#222222</tertiaryComplementColor>
+        <zeronaryColor>#51606E</zeronaryColor>
+        <zeronaryComplementColor>#FFFFFF</zeronaryComplementColor>
+    </branding>
+    <changePasswordTemplate>unfiled$public/CommunityChangePasswordEmailTemplate</changePasswordTemplate>
+    <emailSenderAddress>tella.usapp@gmail.com</emailSenderAddress>
+    <emailSenderName>AppOne</emailSenderName>
+    <enableGuestChatter>false</enableGuestChatter>
+    <enableInvitation>false</enableInvitation>
+    <enableKnowledgeable>false</enableKnowledgeable>
+    <enableNicknameDisplay>false</enableNicknameDisplay>
+    <enablePrivateMessages>false</enablePrivateMessages>
+    <enableReputation>false</enableReputation>
+    <enableSiteAsContainer>true</enableSiteAsContainer>
+    <forgotPasswordTemplate>unfiled$public/CommunityForgotPasswordEmailTemplate</forgotPasswordTemplate>
+    <navigationLinkSet>
+        <navigationMenuItem>
+            <label>Topics</label>
+            <position>1</position>
+            <publiclyAvailable>true</publiclyAvailable>
+            <target>ShowMoreTopics</target>
+            <type>NavigationalTopic</type>
+        </navigationMenuItem>
+    </navigationLinkSet>
+    <networkMemberGroups>
+        <permissionSet>skuid__Skuid_Page_Viewer</permissionSet>
+        <permissionSet>skuid__Skuid_Page_Builder</permissionSet>
+        <permissionSet>skuid__Skuid_Admin</permissionSet>
+        <permissionSet>skuid__Connect_to_this_Salesforce_orgs_data_using_Skuid</permissionSet>
+        <permissionSet>cwbtool__CWBPermissionSet</permissionSet>
+        <permissionSet>tubl__TextUs_Access</permissionSet>
+        <permissionSet>tdc_tsw__SMS_App_Permission_Set</permissionSet>
+        <profile>Admin</profile>
+        <profile>Analytics Cloud Security User</profile>
+        <profile>StandardAul</profile>
+        <profile>Analytics Cloud Integration User</profile>
+        <profile>Standard</profile>
+        <profile>ContractManager</profile>
+        <profile>MarketingProfile</profile>
+        <profile>Custom%3A Support Profile</profile>
+        <profile>Custom%3A Marketing Profile</profile>
+        <profile>Custom%3A Sales Profile</profile>
+        <profile>ReadOnly</profile>
+        <profile>SolutionManager</profile>
+        <profile>Cross Org Data Proxy User</profile>
+        <profile>Work%2Ecom Only User</profile>
+        <profile>Identity User</profile>
+        <profile>Force%2Ecom - App Subscription User</profile>
+        <profile>Partner App Subscription User</profile>
+        <profile>Force%2Ecom - Free User</profile>
+        <profile>External Identity User</profile>
+        <profile>Customer Community Login User</profile>
+        <profile>Customer Community Plus Login User</profile>
+        <profile>Authenticated Website</profile>
+        <profile>Customer Portal Manager Standard</profile>
+        <profile>Gold Partner User</profile>
+        <profile>HighVolumePortal</profile>
+        <profile>Silver Partner User</profile>
+        <profile>Customer Community Plus User</profile>
+        <profile>Customer Community User</profile>
+        <profile>Customer Portal Manager Custom</profile>
+        <profile>Partner Community Login User</profile>
+        <profile>PlatformPortal</profile>
+        <profile>Partner Community User</profile>
+        <profile>High Volume Customer Portal User</profile>
+    </networkMemberGroups>
+    <picassoSite>AppOne1</picassoSite>
+    <selfRegistration>false</selfRegistration>
+    <sendWelcomeEmail>true</sendWelcomeEmail>
+    <site>AppOne</site>
+    <status>Live</status>
+    <tabs>
+        <defaultTab>home</defaultTab>
+        <standardTab>Chatter</standardTab>
+    </tabs>
+    <urlPathPrefix>AppOne</urlPathPrefix>
+    <welcomeTemplate>unfiled$public/CommunityWelcomeEmailTemplate</welcomeTemplate>
+</Network>

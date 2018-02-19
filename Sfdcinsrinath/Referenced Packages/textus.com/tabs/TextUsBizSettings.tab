@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Tab used for setting the properties for TextUs connection of a single User accessing the app.</description>
+    <label>TextUs Settings</label>
+    <mobileReady>false</mobileReady>
+    <motif>Custom22: Phone</motif>
+    <page>ConnectionSettings</page>
+</CustomTab>

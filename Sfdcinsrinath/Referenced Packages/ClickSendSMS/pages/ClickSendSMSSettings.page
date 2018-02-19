@@ -1,0 +1,18 @@
+<apex:page standardController="ClickSendSMS__ClickSend_SMS_Settings__c" extensions="ClickSendSMS.ClickSendSMSSettings" >
+ <apex:form >
+ <apex:sectionheader title="ClickSend SMS Settings" subtitle="{!if(ClickSendSMS__ClickSend_SMS_Settings__c.Id==null,'New ClickSend SMS Settings',ClickSendSMS__ClickSend_SMS_Settings__c.Name)}"></apex:sectionheader>
+     <apex:pageBlock >
+     <apex:pageMessages ></apex:pageMessages>
+     <apex:pageblockButtons rendered="{!renderSettings}">
+     <apex:commandButton value="Save" action="{!Save}"/>
+         <apex:commandButton value="Cancel" action="{!Cancel}"/>
+     </apex:pageblockButtons>
+         <apex:pageBlockSection rendered="{!renderSettings}">
+         <apex:inputField value="{!setting.name}" required="true"/>
+         <apex:inputField value="{!setting.ClickSendSMS__ClickSend_API_Key__c}"/>
+         <apex:inputField value="{!setting.ClickSendSMS__From_Number__c}"/>
+         
+         </apex:pageBlockSection>
+     </apex:pageBlock>
+ </apex:form>
+</apex:page>

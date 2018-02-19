@@ -1,0 +1,177 @@
+<apex:page sidebar="false" showHeader="false"  Controller="ClickSendSMS.SendSMSController" tabStyle="Contact" id="pid" >
+    <apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" />
+    <script>
+    $j = jQuery.noConflict();       
+    $j(function() {             
+        var OppoToSvcContract   = {};
+        
+        (function(app) {         
+            app.init    = function() {
+                app.bindings();     //  establish bindings  
+            }; 
+            app.bindings = function() {
+                // set up binding for onclick checkbox: Unchecks other checkboxes
+                $j('input[id*="qCheckbox"]').click(function(e) {        
+                    var clickedElmId    = $j(this).attr('id');          
+                    $j('input[id*="qCheckbox"]').each(function() {       
+                        if ($j(this).attr('id') != clickedElmId) {       
+                            $j(this).removeProp('checked');
+                        }
+                    });
+                });                                                
+            };                                                    
+            
+            app.init();              
+        }) (OppoToSvcContract);      
+        
+        
+    }); 
+    </script>
+    <script type="text/javascript">
+    
+     function checkone(arg,templatebody)
+    { 
+        var txtbox= document.getElementById("pid:frm:pb:pbs:smsbody") ;
+        if( arg.checked==true)
+        { 
+            txtbox.value=templatebody;
+        }
+        else
+        {
+            txtbox.value='';
+        }
+        
+    }  
+    
+    function reloadParent( msg) {
+    var status=document.getElementById("pid:frm:pb:status").value;
+    //alert(status);
+    if(status=='200')
+    {
+        alert('Message sending is queued.');
+         window.top.close();
+          window.opener.location.reload();
+        if(msg=='Message sending is queued.')
+        {
+            
+            top.window.opener.refresh(); 
+            window.opener.location.href="/{!$CurrentPage.parameters.id}";
+            window.top.close();
+             window.opener.location.reload();
+        }
+    }
+    else if(status=='400')
+    {
+        alert('BAD_REQUEST - The request was invalid or cannot be otherwise served. An accompanying error message will explain further.');
+        window.top.close();
+    }
+    else if(status=='401')
+    {
+        alert('UNAUTHORIZED - Authentication credentials were missing or incorrect.');
+        window.top.close();
+    }
+    
+    else if(status=='403')
+    {
+        alert('FORBIDDEN - The request is understood, but it has been refused or access is not allowed. An accompanying error message will explain why.');
+        window.top.close();
+    }
+    
+    else if(status=='404')
+    {
+        alert('NOT_FOUND - The URI requested is invalid or the resource requested does not exists.');
+        window.top.close();
+    }
+    
+    else if(status=='405')
+    {
+        alert('NOT_FOUND - Method doesnot exist or is not allowed.');
+       // alert('NOT_FOUND - Method doesn't exist or is not allowed.');
+        window.top.close();
+    }
+    
+    else if(status=='429')
+    {
+        alert('TOO_MANY_REQUESTS - Rate Limit Exceeded. Returned when a request cannot be served due to the application’s rate limit having been exhausted for the resource. See Rate Limiting.');
+        window.top.close();
+    }
+    
+    
+     else if(status=='500')
+    {
+        alert('INTERNAL_SERVER_ERROR - smothing is broken.');
+        window.top.close();
+    }
+    else if(status=='other')
+    {
+        alert('Unauthorized endpoint, please check Setup->Security->Remote site settings. endpoint = https://rest.clicksend.com/v3/sms/send');
+        window.top.close();
+    }
+    else if(status=='1000')
+    {
+        alert('Please setup ClickSend Settings');
+        window.top.close();
+    }
+    
+    else if(status=='1001')
+    {
+        alert('Invalid contact phone number');
+        window.top.close();
+    }
+    }
+    function disableTemplate(arg)
+    {
+        if( arg.checked==true)
+        {
+            var txtbox= document.getElementById("pid:frm:pb:pbs:smsbody") ;                
+            txtbox.disabled=true;
+            var pb= document.getElementById("pid:frm:pb:pbs2:op") ;               
+            pb.disabled=false;
+            
+        }
+        else
+        {
+            var txtbox= document.getElementById("pid:frm:pb:pbs:smsbody") ;                
+            txtbox.disabled=false;
+            var pb= document.getElementById("pid:frm:pb:pbs2:op") ; 
+            pb.disabled=true;
+        }
+        
+    }  
+   
+    </script>
+    <apex:form id="frm">
+        <apex:pageBlock id="pb">
+            <apex:pageMessages id="msg"></apex:pageMessages>            
+            <apex:pageBlockSection title="SMS" id="pbs" columns="3" >
+                <apex:inputField value="{!template.ClickSendSMS__Template_Body__c}" style="width:300px;height:100px;" id="smsbody" required="true"/>
+             <!--   (OR)<apex:inputCheckbox value="{!isTemplateSeleted}" label="Template" onclick="disableTemplate(this);"/>-->
+            </apex:pageBlockSection>
+            <apex:pageBlockSection title="SMS Template" columns="1" id="pbs2">
+                <apex:outputPanel id="op">
+                    <apex:pageBlockTable value="{!wrapperList}" var="wl" width="500px" id="pb1">
+                        <apex:column >
+                            <apex:inputCheckbox value="{!wl.isChecked}" id="qCheckbox"  onclick="checkone(this,'{!JSENCODE(wl.template.ClickSendSMS__Template_Body__c)}');"/>
+                        </apex:column>
+                        <apex:column value="{!wl.template.Name}" headerValue="Name"/>
+                        <apex:column value="{!wl.template.ClickSendSMS__Template_Body__c}"/>
+                    </apex:pageBlockTable>
+                </apex:outputPanel>
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Send" action="{!Send}" reRender="msg,status" oncomplete="reloadParent('{!JSENCODE(msg)}');"/>
+                <apex:commandButton value="Cancel" onclick="return window.top.close();"/>
+                <!--reloadParent('{!msg}')-->
+                <!--   <apex:outputPanel id="buttons">
+<apex:commandButton action="{!Send}" value="Send" status="closer" rerender="buttons"/>
+<apex:commandButton value="Cancel" onclick="window.close()"/>
+<apex:actionStatus startText="(Sending...)" stopText="" onStop="reloadParent('{!JSENCODE(msg)}');window.top.close()" id="closer"/>
+</apex:outputPanel> -->
+                
+            </apex:pageBlockButtons>
+            <apex:inputHidden value="{!smsStaus}" id="status"/>
+        </apex:pageBlock>
+        
+        
+    </apex:form>
+</apex:page>

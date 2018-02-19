@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- Current Generator(s) --></label>
+        <name>CurrentGenerators__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number of Locations --></label>
+        <name>NumberofLocations__c</name>
+    </fields>
+    <fields>
+        <label><!-- Current Generator(s) --></label>
+        <name>OctoSMS__CurrentGenerators__c</name>
+    </fields>
+    <fields>
+        <label><!-- Numberformat --></label>
+        <name>OctoSMS__Numberformat__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number of Locations --></label>
+        <name>OctoSMS__NumberofLocations__c</name>
+    </fields>
+    <fields>
+        <label><!-- Primary --></label>
+        <name>OctoSMS__Primary__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Product Interest --></label>
+        <name>OctoSMS__ProductInterest__c</name>
+        <picklistValues>
+            <masterLabel>GC1000 series</masterLabel>
+            <translation><!-- GC1000 series --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GC3000 series</masterLabel>
+            <translation><!-- GC3000 series --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GC5000 series</masterLabel>
+            <translation><!-- GC5000 series --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- SIC Code --></label>
+        <name>OctoSMS__SICCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Primary --></label>
+        <name>Primary__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Product Interest --></label>
+        <name>ProductInterest__c</name>
+        <picklistValues>
+            <masterLabel>GC1000 series</masterLabel>
+            <translation><!-- GC1000 series --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GC3000 series</masterLabel>
+            <translation><!-- GC3000 series --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GC5000 series</masterLabel>
+            <translation><!-- GC5000 series --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- SIC Code --></label>
+        <name>SICCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Facebook Image Url --></label>
+        <name>sf4twitter__Fcbk_Image_Url__c</name>
+    </fields>
+    <fields>
+        <label><!-- Facebook Picture --></label>
+        <name>sf4twitter__Fcbk_Picture__c</name>
+    </fields>
+    <fields>
+        <label><!-- Facebook Profile Url --></label>
+        <name>sf4twitter__Fcbk_Profile_Url__c</name>
+    </fields>
+    <fields>
+        <label><!-- Facebook User Id --></label>
+        <name>sf4twitter__Fcbk_User_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Facebook Username --></label>
+        <name>sf4twitter__Fcbk_Username__c</name>
+    </fields>
+    <fields>
+        <help>Klicken Sie auf den Link, um den folgenden Status zu ändern</help>
+        <label><!-- Following on Twitter --></label>
+        <name>sf4twitter__Follow_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Klout Number --></label>
+        <name>sf4twitter__Klout_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Klout Score --></label>
+        <name>sf4twitter__Klout_Score__c</name>
+    </fields>
+    <fields>
+        <label><!-- Origin --></label>
+        <name>sf4twitter__Origin__c</name>
+        <picklistValues>
+            <masterLabel>Facebook</masterLabel>
+            <translation>Facebook</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Twitter</masterLabel>
+            <translation>Twitter</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Twitter Bio --></label>
+        <name>sf4twitter__Twitter_Bio__c</name>
+    </fields>
+    <fields>
+        <label><!-- Twitter Creation Date --></label>
+        <name>sf4twitter__Twitter_Creation_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Twitter Follower count --></label>
+        <name>sf4twitter__Twitter_Follower_count__c</name>
+    </fields>
+    <fields>
+        <label><!-- Twitter Following count --></label>
+        <name>sf4twitter__Twitter_Following_count__c</name>
+    </fields>
+    <fields>
+        <label><!-- Twitter Image Url --></label>
+        <name>sf4twitter__Twitter_Image_Url__c</name>
+    </fields>
+    <fields>
+        <label><!-- Twitter Last tweet --></label>
+        <name>sf4twitter__Twitter_Last_tweet__c</name>
+    </fields>
+    <fields>
+        <label><!-- Twitter Location --></label>
+        <name>sf4twitter__Twitter_Location__c</name>
+    </fields>
+    <fields>
+        <label><!-- Twitter Picture --></label>
+        <name>sf4twitter__Twitter_Picture__c</name>
+    </fields>
+    <fields>
+        <label><!-- Twitter Status count --></label>
+        <name>sf4twitter__Twitter_Status_count__c</name>
+    </fields>
+    <fields>
+        <label><!-- Twitter User Id --></label>
+        <name>sf4twitter__Twitter_User_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Twitter Username --></label>
+        <name>sf4twitter__Twitter_Username__c</name>
+    </fields>
+    <fields>
+        <label><!-- Followed --></label>
+        <name>sf4twitter__followed__c</name>
+    </fields>
+    <fields>
+        <label><!-- SMS Opt out --></label>
+        <name>tdc_tsw__SMS_Opt_out__c</name>
+    </fields>
+    <fields>
+        <label><!-- TextUs Phone --></label>
+        <name>tubl__TextUs_Phone__c</name>
+    </fields>
+    <webLinks>
+        <label><!-- Send_SMS --></label>
+        <name>BG_SMS__Send_SMS</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Send_SMS --></label>
+        <name>OctoSMS__Send_SMS</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Send_SMS_ListView --></label>
+        <name>OctoSMS__Send_SMS_ListView</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Get_Author_Info_Massive --></label>
+        <name>sf4twitter__Get_Author_Info_Massive</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Get_Klout_Score --></label>
+        <name>sf4twitter__Get_Klout_Score</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Get_Klout_Score_Massive --></label>
+        <name>sf4twitter__Get_Klout_Score_Massive</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Get_Twitter_Username --></label>
+        <name>sf4twitter__Get_Twitter_Username</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Search_Twitter_Username --></label>
+        <name>sf4twitter__Search_Twitter_Username</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Update_Twitter_Information --></label>
+        <name>sf4twitter__Update_Twitter_Information</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Send_SMS --></label>
+        <name>tdc_tsw__Send_SMS</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Send_SMS_List --></label>
+        <name>tdc_tsw__Send_SMS_List</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Send_SMS_SF1 --></label>
+        <name>tdc_tsw__Send_SMS_SF1</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Send_Text --></label>
+        <name>tubl__Send_Text</name>
+    </webLinks>
+</CustomObjectTranslation>

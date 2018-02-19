@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <description>Custom setting containing the configuration for TextUs Client Application</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>No_Triggers__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Used for disabling all the TextUs.Biz triggers only to be used by an Administrator. Use only when doing data transformations or imports.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this to disable all TextUs.Biz triggers.</inlineHelpText>
+        <label>No Triggers</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>No_Validations__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Used for disabling all the TextUs.Biz validation rules that use the flag, only to be used by an Administrator. Use only when doing data transformations or imports.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this to disable all TextUs.Biz validation rules.</inlineHelpText>
+        <label>No Validations</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>No_Workflow__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Used for disabling all the TextUs.Biz workflows, only to be used by an Administrator. Use only when doing data transformations or imports.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this to disable all TextUs.Biz workflows.</inlineHelpText>
+        <label>No Workflow</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>TaskStatus__c</fullName>
+        <defaultValue>&quot;Completed&quot;</defaultValue>
+        <deprecated>false</deprecated>
+        <description>The value stored in the Status field on tasks created for send text.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The value stored in the Status field on tasks created for send text.</inlineHelpText>
+        <label>Task Status</label>
+        <length>255</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TaskSubject__c</fullName>
+        <defaultValue>&apos;Sent Text&apos;</defaultValue>
+        <deprecated>false</deprecated>
+        <description>The value stored in the Subject field on tasks created for send text.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The value stored in the Subject field on tasks created for send text.</inlineHelpText>
+        <label>Task Subject</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TaskType__c</fullName>
+        <defaultValue>&apos;Sent Text&apos;</defaultValue>
+        <deprecated>false</deprecated>
+        <description>The value stored in the Type field on tasks created for send text.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The value stored in the Type field on tasks created for send text.</inlineHelpText>
+        <label>Task Type</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>apiEndpoint__c</fullName>
+        <defaultValue>&apos;https://app.textus.com/api/&apos;</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Used for storing the TextUs API endpoint.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>TextUs API endpoint. 
+Needs to be listed in Remote Site Settings</inlineHelpText>
+        <label>TextUs API endpoint</label>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Url</type>
+    </fields>
+    <label>TextUs Settings</label>
+    <visibility>Public</visibility>
+</CustomObject>

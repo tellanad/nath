@@ -1,0 +1,6 @@
+<apex:page standardController="Account">
+  
+  Hi {!$User.FirstName}
+  <p>You are viewing the  {!account.name} account</p>
+  <apex:outputLink value="http://google.com/search">Search Google </apex:outputLink>
+</apex:page>

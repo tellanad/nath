@@ -1,0 +1,29 @@
+<apex:page Controller="tdc_tsw.UpdateThroughButtonController" action="{!updateRecord}" docType="html-5.0"  showQuickActionVfHeader="false" standardStylesheets="false" sidebar="false" showHeader="false">
+	<style>
+			.ui-corner-all{
+			background: transparent !important;
+			border: none !important;
+			width: 225px !important;
+			left: 580px !important;
+			top:590px !important;
+		}
+		.ui-dialog-titlebar.ui-widget-header.ui-corner-all.ui-helper-clearfix{
+			display: none !important;
+		}
+		#opppopup{
+			height: 208px;
+		}
+		.PopupPanel{
+			width: 60px;
+		}
+
+	</style>
+	<div>
+		<img class="PopupPanel" src="https://www.mintbox.com/images/loading3.gif" alt="Loading..."  />
+    </div>
+     <script>
+     		//var msg = "{!errorMsg}";
+     		//alert(msg);
+     	    window.top.location.href= "{!returnURL}";
+     </script>
+</apex:page>

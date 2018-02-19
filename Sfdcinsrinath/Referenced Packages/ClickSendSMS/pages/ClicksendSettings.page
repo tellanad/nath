@@ -1,0 +1,26 @@
+<apex:page controller="ClickSendSMS.ClicksendSettings" tabStyle="Settings__tab">
+  <apex:form id="frm" >
+    <apex:sectionHeader title="ClickSend SMS Settings" subtitle="New ClickSend SMS Settings" />
+    <apex:pageBlock id="pgblock" >
+    <apex:messages />
+    <center>
+    <apex:commandButton value="New" action="{!NewSetings}"/>
+    </center>
+    <apex:pageBlockTable value="{!Settings}" var="se">
+        <apex:column headerValue="Action" >
+        <apex:commandLink value="Edit" action="{!EditSettings}">
+        <apex:param name="clicksendID" value="{!se.id}"/>
+        </apex:commandLink>&nbsp;&nbsp;
+        
+        <apex:commandLink value="Del" action="{!DelSettings}" onclick="return confirm('Are you sure?');" >
+        <apex:param name="clickdelID" value="{!se.id}"/>
+        </apex:commandLink>
+        
+        </apex:column>
+        <apex:column headerValue="Username" value="{!se.name}"/ >
+        <apex:column headerValue="API Key" value="{!se.ClickSendSMS__API_Key__c}"/>
+        <apex:column headerValue="From Number" value="{!se.ClickSendSMS__From_Number__c}"/>
+    </apex:pageBlockTable>
+    </apex:pageBlock>
+  </apex:form>
+</apex:page>

@@ -1,0 +1,3 @@
+<apex:page controller="tdc_tsw.IncomingAlert" applyBodyTag="false" standardStylesheets="false">
+    <c:Incoming_Alert_Slds_Component />
+</apex:page>

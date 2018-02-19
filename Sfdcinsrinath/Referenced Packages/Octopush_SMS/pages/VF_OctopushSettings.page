@@ -1,0 +1,63 @@
+<apex:page controller="OctoSMS.VF_OctopushSettings_CTRL">
+<apex:sectionHeader title="Send SMS like a PRO" subtitle="Octopush Settings Screen"/>
+   
+    <apex:pageMessages />
+    <apex:form id="formid">
+        <apex:pageBlock title="Octopush Settings">
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!save}" value="Save & Sync" oncomplete="syncocto();"/>
+            </apex:pageBlockButtons>
+            <apex:actionFunction name="syncocto" action="{!sync}"/>
+            <apex:pageBlockSection title="General information" columns="2" >
+                
+                <apex:inputField value="{!os.OctoSMS__User_Name__c}" style="width:300px"/>               
+                <apex:pageBlockSectionItem />                
+                
+                <apex:inputField value="{!os.OctoSMS__API_KEY__c}" style="width:300px"/>             
+                <apex:pageBlockSectionItem />
+                
+                <apex:inputField value="{!os.OctoSMS__Real_SMS_Sending__c}"/>                
+                <apex:pageBlockSectionItem />
+                
+                <apex:inputField value="{!os.OctoSMS__History_Recording__c}"/>
+                <apex:pageBlockSectionItem />
+                
+                <apex:inputField value="{!os.OctoSMS__Default_Sender_Name__c}" required="true"/>
+                <apex:pageBlockSectionItem />
+
+                <!--<apex:inputField value="{!os.Virtualnumber__c}"/>
+                <apex:pageBlockSectionItem />-->
+
+                <apex:pageblockSectionItem helpText="{!$Label.octosms__helptext_transactional_marketing_field}" >                    
+                    <apex:outputLabel value="SMS Purpose" />
+                    <apex:outputPanel >
+                        <apex:selectRadio value="{!os.OctoSMS__SMS_Purpose__c}" required="true" style="margin-top:-10px;margin-bottom:-10px">
+                    <apex:selectOptions value="{!items}"/>
+                </apex:selectRadio>
+                    </apex:outputPanel>
+                 </apex:pageblockSectionItem>
+                 <apex:pageBlockSectionItem />
+
+                <apex:inputField value="{!os.OctoSMS__WithReplies__c}"/>                
+                <apex:pageBlockSectionItem />
+
+                <apex:pageblockSectionItem dataStyle="width:50%" helpText="{!$Label.octosms__site_url}">
+               <apex:outputLabel value="Site url" />
+                <apex:outputPanel >
+                <apex:inputField value="{!os.OctoSMS__Siteurl__c}" style="width:300px"/>&nbsp;&nbsp;
+                <apex:outputLink value="/0DM/o">Set up site</apex:outputLink>
+                </apex:outputPanel>
+                </apex:pageblockSectionItem>
+
+            </apex:pageBlockSection>
+             <apex:pageBlockSection title="Contact us" columns="1">
+             <div>
+                 For more information, please contact us<br />
+                 By phone: 33(0)4.13.41.50.70<br />
+                 By email: support@octopush.com<br />
+                 Website: <a href="http://www.octopush.com/en/contact-us" tilte="For more information, please visit our website" target="_BLANK">Octopush contact form</a>
+             </div>
+             </apex:pageBlockSection>        
+        </apex:pageBlock>
+    </apex:form> 
+</apex:page>

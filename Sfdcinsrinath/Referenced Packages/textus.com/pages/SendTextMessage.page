@@ -1,0 +1,27 @@
+<!--
+ - Created by Zoran Zunko on 1/31/16.
+ -->
+
+<apex:page id="SendTextMessage"
+           controller="tubl.MessageJSRemoteController"
+           title="Send Text Message"
+           showHeader="false"
+           sideBar="false"
+           applyBodyTag="false"
+           applyHtmlTag="false"
+           standardStylesheets="false">
+    <html xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <body>
+    <div id="send-message-root"
+         class="slds"></div>
+    <apex:stylesheet value="{! URLFOR($Resource.SLDS, 'assets/styles/salesforce-lightning-design-system-scoped.css')}"/>
+    <apex:includeScript value="{!$Resource.tubl__sendMessage}"></apex:includeScript>
+    <script type="text/javascript">
+        a = new sendMessage.default;
+        a.run('{!$RemoteAction.MessageJSRemoteController.getRecipients}', '{!$RemoteAction.MessageJSRemoteController.sendMessage}', '{!$CurrentPage.parameters.id}', "{!URLFOR($Resource.tubl__SLDS, 'assets')}");
+    </script>
+    </body>
+    </html>
+</apex:page>

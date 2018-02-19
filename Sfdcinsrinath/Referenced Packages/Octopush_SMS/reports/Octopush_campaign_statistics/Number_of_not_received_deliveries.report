@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>SMS_History__c$Name</field>
+    </columns>
+    <columns>
+        <field>SMS_History__c$Sender_Name__c</field>
+    </columns>
+    <columns>
+        <field>SMS_History__c$Sending_Date__c</field>
+    </columns>
+    <columns>
+        <field>SMS_History__c$Error_Reason__c</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>SMS_History__c$Status__c</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Transmitted to Octopush</value>
+        </criteriaItems>
+    </filter>
+    <format>Tabular</format>
+    <name>Number of not received deliveries</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>sms_history__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <sortColumn>SMS_History__c$Name</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>SMS_History__c$Answerdate__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

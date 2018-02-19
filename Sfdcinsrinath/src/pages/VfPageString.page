@@ -1,0 +1,8 @@
+<apex:page controller="GetHtmlResponse" renderAs="pdf" >
+
+<apex:outputText value="{!response}" escape="false" />
+
+
+
+
+</apex:page>

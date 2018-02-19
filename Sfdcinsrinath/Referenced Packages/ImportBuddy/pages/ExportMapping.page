@@ -1,0 +1,6 @@
+<apex:page standardController="sftplib__Saved_Mapping__c" extensions="sftplib.ExportIBController" readOnly="true" sidebar="false" standardStylesheets="false" showHeader="false" cache="true" expires="0"  contentType="text/csv#{!fileName}.importbuddy" >{!compInfo}
+{!MappingFields}
+          <apex:repeat value="{!SObjectListToShow}" var="con">
+"{!con.Name}","{!con.sftplib__Header__c}","{!con.sftplib__API__c}","{!con.sftplib__Data_Type__c}","{!con.sftplib__Reference_To__c}","{!con.sftplib__Reference_To_Field__c}","{!con.sftplib__Is_Identifier__c}","{!con.sftplib__StaticValue__c}","{!con.sftplib__IsStatic__c}"
+          </apex:repeat>
+</apex:page>

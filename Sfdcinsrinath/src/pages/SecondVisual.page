@@ -1,0 +1,22 @@
+<apex:page standardController="Account" sidebar="false" showHeader="false" >
+ <!--
+ The Accountb name is:
+ {!Account.name}<br/>
+ The Industry is:
+ {!Account.industry}
+ -->
+ <apex:detail relatedList="false"/>
+ <apex:relatedList list="cases"/>
+ <!-- accessing a Variable(To Know Logged in User,if !$ Global Variable,field ,formula,variable   
+ {!$User.FirstName}
+ {!$User.LastName}<br/>
+ {!TODAY()}<br/>
+ {!TODAY()+7}<br/>
+ {!MAX(1,2,76,19,34)}<br/>
+ {!SQRT(81)}<br/>
+ {!IF(CONTAINS('abcdef','cd'),'TRUE','FALSE')}
+  -->
+ 
+ 
+ 
+</apex:page>

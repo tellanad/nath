@@ -1,0 +1,6 @@
+<apex:page controller="PdfEmailController">
+  <apex:form >
+  <h1>Generated PDf Send Email</h1>
+  <apex:commandButton action="{!sendPdf}" value="Send PDF"/>
+  </apex:form>
+</apex:page>

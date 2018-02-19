@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>FilterUsersEmailLabel</fullName>
+        <categories>Visualforce, Connection Settings</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Filter users by email label</shortDescription>
+        <value>Type first 4 characters in email you wish to find</value>
+    </labels>
+</CustomLabels>
